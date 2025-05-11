@@ -26,31 +26,31 @@ export const portfolioData: PortfolioData = {
       "I'm a passionate Computer Science student and freelance developer with a focus on creating beautiful, functional web experiences. With a strong foundation in both frontend and backend technologies, I bring ideas to life through clean code and intuitive design.",
       "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through my blog. I believe in continuous learning and pushing the boundaries of what's possible on the web.",
     ],
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/my.jpg?height=400&width=400",
     counters: [
       {
         id: "coffee",
         icon: "Coffee",
-        value: 500,
+        value: 100,
         label: "Cups of Coffee",
       },
       {
         id: "projects",
         icon: "Code",
-        value: 30,
+        value: 15,
         label: "Projects",
       },
       {
         id: "hours",
         icon: "Clock",
-        value: 2000,
+        value: 1000,
         label: "Hours Coded",
       },
     ],
     timeline: [
       {
         id: "timeline-1",
-        year: "2020",
+        year: "2022",
         title: "Started Computer Science Degree",
         description:
           "Began my formal education in Computer Science, focusing on algorithms, data structures, and software engineering principles.",

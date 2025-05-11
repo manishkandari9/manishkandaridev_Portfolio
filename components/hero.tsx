@@ -6,12 +6,10 @@ import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import ParticleBackground from "@/components/particle-background"
-import { usePortfolio } from "@/context/portfolio-context"
 
 export default function Hero() {
-  const { hero } = usePortfolio()
   const [text, setText] = useState("")
-  const fullText = hero.tagline
+  const fullText = "CS Student & Freelance Web/Backend Developer"
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
@@ -19,10 +17,10 @@ export default function Hero() {
       const timeout = setTimeout(() => {
         setText((prev) => prev + fullText[index])
         setIndex(index + 1)
-      }, 100)
+      }, 80)
       return () => clearTimeout(timeout)
     }
-  }, [index, fullText])
+  }, [index])
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20">
@@ -36,12 +34,12 @@ export default function Hero() {
           className="text-center space-y-6"
         >
           <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-300"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            {hero.name}
+            Manish Kandari
           </motion.h1>
 
           <motion.div
@@ -50,11 +48,20 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <h2 className="text-xl md:text-2xl lg:text-3xl text-primary font-mono">
+            <h2 className="text-xl md:text-2xl lg:text-3xl text-primary font-mono tracking-wide">
               {text}
               <span className="animate-pulse">|</span>
             </h2>
           </motion.div>
+
+          <motion.p
+            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            Building sleek websites & powerful backends with React, Node.js, and more. Let’s create something epic!
+          </motion.p>
 
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
@@ -62,18 +69,21 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            <Link href={hero.cta.primary.link}>
-              <Button size="lg" className="min-w-[150px] bg-primary hover:bg-primary/90 text-primary-foreground">
-                {hero.cta.primary.text}
+            <Link href="/projects">
+              <Button
+                size="lg"
+                className="min-w-[180px] bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold transform hover:scale-105 transition-transform"
+              >
+                See My Projects
               </Button>
             </Link>
-            <Link href={hero.cta.secondary.link}>
+            <Link href="/contact">
               <Button
                 size="lg"
                 variant="outline"
-                className="min-w-[150px] border-primary text-primary hover:bg-primary/10"
+                className="min-w-[180px] border-primary text-primary hover:bg-primary/10 text-lg font-bold transform hover:scale-105 transition-transform"
               >
-                {hero.cta.secondary.text}
+                Work With Me
               </Button>
             </Link>
           </motion.div>

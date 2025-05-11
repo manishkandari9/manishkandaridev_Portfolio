@@ -139,10 +139,10 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold">Email</h4>
                   <a
-                    href="mailto:manish@example.com"
+                    href="mailto:manishkandari168@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    manish@example.com
+                    ManishKandari168@Gmail.com
                   </a>
                 </div>
               </div>
@@ -153,8 +153,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold">Phone</h4>
-                  <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                    +1 (234) 567-890
+                  <a href="tel:+7830130183" className="text-muted-foreground hover:text-primary transition-colors">
+                    +91 7830130183
                   </a>
                 </div>
               </div>
@@ -165,7 +165,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold">Location</h4>
-                  <p className="text-muted-foreground">New Delhi, India</p>
+                  <p className="text-muted-foreground">Rishikesh, Uttrakhand</p>
                 </div>
               </div>
 
@@ -176,7 +176,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold">WhatsApp</h4>
                   <a
-                    href="https://wa.me/1234567890"
+                    href="https://wa.me/7830130183"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors"
@@ -191,7 +191,7 @@ export default function Contact() {
               <h4 className="font-bold mb-4">Connect with me</h4>
               <div className="flex gap-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/manishkandari9"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-card/30 backdrop-blur-sm rounded-lg border border-border hover:bg-primary/10 hover:text-primary transition-colors"
@@ -225,7 +225,7 @@ export default function Contact() {
                   </svg>
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/manishkandari09/?hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-card/30 backdrop-blur-sm rounded-lg border border-border hover:bg-primary/10 hover:text-primary transition-colors"

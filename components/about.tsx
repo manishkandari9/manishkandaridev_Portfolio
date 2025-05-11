@@ -62,21 +62,28 @@ function TimelineItem({ year, title, description, index }: TimelineItemProps) {
   return (
     <motion.div
       ref={itemRef}
-      className="flex gap-4 md:gap-8"
+      className="relative flex items-start gap-4 md:gap-8"
       initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
+      {/* Year Badge */}
+      <div className="flex flex-col items-center z-10">
+        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-base">
           {year}
         </div>
-        {index < 3 && <div className="w-0.5 h-full bg-border mt-2" />}
       </div>
+
+      {/* Content */}
       <div className="pb-8">
         <h3 className="text-lg font-bold">{title}</h3>
         <p className="text-muted-foreground">{description}</p>
       </div>
+
+      {/* Connecting Line */}
+      {index < 3 && (
+        <div className="absolute left-6 top-12 w-0.5 h-[calc(100%-3rem)] bg-border" />
+      )}
     </motion.div>
   )
 }
@@ -121,7 +128,7 @@ export default function About() {
             className="relative"
           >
             <div className="relative h-[400px] w-full overflow-hidden rounded-xl">
-              <Image src={about.image || "/placeholder.svg"} alt={about.title} fill className="object-cover" />
+              <Image src={about.image || "/img.jpg"} alt={about.title} fill className="object-cover" />
             </div>
             <div className="absolute -bottom-6 -right-6 h-40 w-40 bg-primary/10 rounded-xl border border-primary"></div>
           </motion.div>
