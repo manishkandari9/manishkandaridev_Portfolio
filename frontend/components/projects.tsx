@@ -1,109 +1,30 @@
-"use client"
+"use client";
 
-import { useState, useRef } from "react"
-import { motion, AnimatePresence, useInView } from "framer-motion"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { Badge } from "@/components/ui/badge"
-import { Github, ExternalLink } from "lucide-react"
-import Link from "next/link"
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { Github, ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 type Project = {
-  id: number
-  title: string
-  description: string
-  image: string
-  category: "web" | "mobile" | "backend" | "ui/ux"
-  technologies: string[]
-  liveLink?: string
-  codeLink?: string
-  challenge: string
-  solution: string
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "E-commerce Platform",
-    description:
-      "A full-stack e-commerce platform with product management, cart functionality, and payment integration.",
-    image: "/placeholder.svg?height=600&width=800",
-    category: "web",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
-    liveLink: "https://example.com",
-    codeLink: "https://github.com",
-    challenge: "Implementing a secure payment system and optimizing the performance of product filtering and search.",
-    solution:
-      "Utilized Stripe's secure payment API and implemented server-side filtering with pagination to improve performance.",
-  },
-  {
-    id: 2,
-    title: "Task Management App",
-    description: "A mobile-first task management application with real-time updates and offline capabilities.",
-    image: "/placeholder.svg?height=600&width=800",
-    category: "mobile",
-    technologies: ["React Native", "Firebase", "Redux", "Expo"],
-    liveLink: "https://example.com",
-    codeLink: "https://github.com",
-    challenge: "Ensuring data synchronization between offline and online modes without conflicts.",
-    solution: "Implemented a custom synchronization algorithm with timestamp-based conflict resolution.",
-  },
-  {
-    id: 3,
-    title: "API Gateway Service",
-    description: "A microservice-based API gateway that handles authentication, rate limiting, and request routing.",
-    image: "/placeholder.svg?height=600&width=800",
-    category: "backend",
-    technologies: ["Node.js", "Express", "Docker", "Redis", "JWT"],
-    codeLink: "https://github.com",
-    challenge: "Designing a scalable architecture that could handle high traffic loads without becoming a bottleneck.",
-    solution: "Implemented a horizontally scalable design with Redis for distributed caching and rate limiting.",
-  },
-  {
-    id: 4,
-    title: "Finance Dashboard UI",
-    description:
-      "A comprehensive financial dashboard with interactive charts, data visualization, and responsive design.",
-    image: "/placeholder.svg?height=600&width=800",
-    category: "ui/ux",
-    technologies: ["Figma", "React", "Chart.js", "Tailwind CSS"],
-    liveLink: "https://example.com",
-    challenge: "Creating an intuitive interface that could display complex financial data in an accessible way.",
-    solution:
-      "Conducted user research to inform the design and used progressive disclosure patterns to manage complexity.",
-  },
-  {
-    id: 5,
-    title: "Social Media Platform",
-    description: "A social networking platform with real-time messaging, post sharing, and user connections.",
-    image: "/placeholder.svg?height=600&width=800",
-    category: "web",
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB", "AWS S3"],
-    liveLink: "https://example.com",
-    codeLink: "https://github.com",
-    challenge: "Building a scalable real-time communication system that could support thousands of concurrent users.",
-    solution:
-      "Implemented a microservice architecture with Socket.io for real-time features and optimized database queries.",
-  },
-  {
-    id: 6,
-    title: "Fitness Tracking App",
-    description:
-      "A mobile application for tracking workouts, nutrition, and fitness progress with personalized recommendations.",
-    image: "/placeholder.svg?height=600&width=800",
-    category: "mobile",
-    technologies: ["Flutter", "Firebase", "TensorFlow Lite"],
-    liveLink: "https://example.com",
-    challenge: "Implementing accurate exercise recognition and providing meaningful insights from user data.",
-    solution:
-      "Used TensorFlow Lite for on-device pose estimation and developed custom algorithms for progress tracking.",
-  },
-]
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  category: "web" | "mobile" | "backend" | "ui/ux";
+  technologies: string[];
+  liveLink?: string;
+  codeLink?: string;
+  challenge: string;
+  solution: string;
+};
 
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(cardRef, { once: true, margin: "-100px" })
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, margin: "-100px" });
 
   return (
     <motion.div
@@ -150,11 +71,11 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
 
 function ProjectModal({ project, isOpen, onClose }: { project: Project | null; isOpen: boolean; onClose: () => void }) {
-  if (!project) return null
+  if (!project) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -218,27 +139,46 @@ function ProjectModal({ project, isOpen, onClose }: { project: Project | null; i
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
 export default function Projects() {
-  const [filter, setFilter] = useState<string>("all")
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [filter, setFilter] = useState<string>("all");
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const sectionRef = useRef<HTMLElement>(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter)
+  // Fetch projects from Node.js backend
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        setIsLoading(true);
+        const response = await fetch("https://backend-cf0k.onrender.com/api/projects");
+        const data = await response.json();
+        setProjects(data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchProjects();
+  }, []);
+
+  const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
 
   const openProjectModal = (project: Project) => {
-    setSelectedProject(project)
-    setIsModalOpen(true)
-  }
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
 
   const closeProjectModal = () => {
-    setIsModalOpen(false)
-  }
+    setIsModalOpen(false);
+  };
 
   return (
     <section id="projects" ref={sectionRef} className="py-20">
@@ -276,23 +216,27 @@ export default function Projects() {
           ))}
         </motion.div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={filter}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} onClick={() => openProjectModal(project)} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        {isLoading ? (
+          <div className="text-center">Loading projects...</div>
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={filter}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {filteredProjects.map((project) => (
+                <ProjectCard key={project._id} project={project} onClick={() => openProjectModal(project)} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        )}
 
         <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeProjectModal} />
       </div>
     </section>
-  )
+  );
 }

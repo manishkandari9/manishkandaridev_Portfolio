@@ -61,7 +61,7 @@ export default function FeedbackForm() {
     setIsSubmitting(true)
 
     try {
-      await axios.post("https://manishkandaridev-portfolio.onrender.com/feedback", {
+      await axios.post("https://backend-cf0k.onrender.com/feedback", {
         name,
         email,
         message: feedbackText,
