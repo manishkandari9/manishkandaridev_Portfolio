@@ -41,7 +41,7 @@ export default function Navbar() {
   ]
 
   const socialLinks = [
-    { href: contact.info.socials.github || "#", icon: <Github className="h-5 w-5" />, label: "GitHub" },
+    { href: contact.info.socials.github || "https://github.com/manishkandari9", icon: <Github className="h-5 w-5" />, label: "GitHub" },
     { href: contact.info.socials.linkedin || "#", icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn" },
   ]
 
