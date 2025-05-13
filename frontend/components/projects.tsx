@@ -1,10 +1,11 @@
+
 "use client";
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Github, ExternalLink } from "lucide-react";
 import Link from "next/link";
@@ -43,6 +44,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
             alt={project.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
+            priority // Added to optimize LCP for above-the-fold images
           />
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <Button variant="outline" className="text-white border-white hover:bg-white/20">
@@ -82,15 +84,18 @@ function ProjectModal({ project, isOpen, onClose }: { project: Project | null; i
       <DialogContent className="max-w-3xl">
         <DialogHeader>
           <DialogTitle className="text-2xl">{project.title}</DialogTitle>
-          <DialogDescription>
-            <Badge className="mt-2" variant="outline">
-              {project.category}
-            </Badge>
-          </DialogDescription>
+          <div className="mt-2">
+            <Badge variant="outline">{project.category}</Badge>
+          </div>
         </DialogHeader>
 
         <div className="relative h-64 md:h-80 overflow-hidden rounded-lg">
-          <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+          <Image
+            src={project.image || "/placeholder.svg"}
+            alt={project.title}
+            fill
+            className="object-cover"
+          />
         </div>
 
         <div className="space-y-4">
@@ -159,7 +164,19 @@ export default function Projects() {
         setIsLoading(true);
         const response = await fetch("https://backend-cf0k.onrender.com/api/projects");
         const data = await response.json();
-        setProjects(data);
+        const mappedData = data.map((item: any) => ({
+          _id: item._id,
+          title: item.title,
+          description: item.description,
+          image: item.image || "/placeholder.svg",
+          category: item.category,
+          technologies: item.technologies,
+          liveLink: item.liveLink,
+          codeLink: item.codeLink,
+          challenge: item.challenge,
+          solution: item.solution,
+        }));
+        setProjects(mappedData);
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -217,7 +234,11 @@ export default function Projects() {
         </motion.div>
 
         {isLoading ? (
-          <div className="text-center">Loading projects...</div>
+          <div className="text-center text-muted-foreground">Loading projects...</div>
+        ) : filteredProjects.length === 0 ? (
+          <div className="text-center text-muted-foreground">
+            No projects found for this category.
+          </div>
         ) : (
           <AnimatePresence mode="wait">
             <motion.div
