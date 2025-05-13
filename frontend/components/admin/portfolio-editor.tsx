@@ -20,8 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { InfoIcon, PlusCircle, Trash2, Star, LayoutGrid, FilePlus, Edit } from "lucide-react"
-import { Upload, Menu, X, MoreVertical, ChevronRight, Check } from "lucide-react"
+import { InfoIcon, PlusCircle, Trash2, Star, LayoutGrid, FilePlus, Edit, Upload, Menu, X, MoreVertical, ChevronRight, Check } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import axios from "axios"
 import { format, parseISO } from "date-fns"
@@ -83,14 +82,15 @@ export default function PortfolioEditor() {
   // Define interface for CustomFileInput props
   interface CustomFileInputProps {
     id: string
+    name: string
     label: string
     onChange: (file: File | null) => void
     required?: boolean
     className?: string
   }
 
-  // CustomFileInput component with ref-based handling
-  const CustomFileInput = ({ id, label, onChange, required = false, className = "" }: CustomFileInputProps) => {
+  // CustomFileInput component with simplified handling
+  const CustomFileInput = ({ id, name, label, onChange, required = false, className = "" }: CustomFileInputProps) => {
     const [fileName, setFileName] = useState<string>("")
     const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -146,10 +146,10 @@ export default function PortfolioEditor() {
           <input
             ref={fileInputRef}
             id={id}
+            name={name}
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            required={required}
             className="hidden"
           />
         </div>
@@ -219,9 +219,20 @@ export default function PortfolioEditor() {
     fetchProjects()
   }, [])
 
-  // Handle project form submission (Add Project)
+  // Handle project form submission (Add Project) with custom validation
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Custom validation for image
+    if (!projectForm.image) {
+      toast({
+        title: "Validation Error",
+        description: "Please select a project image.",
+        variant: "destructive",
+      })
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
@@ -602,24 +613,6 @@ export default function PortfolioEditor() {
                 activeSection === "manage-projects" &&
                   "bg-gradient-to-r from-primary/90 to-purple-600/90 text-white shadow-md",
               )}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               onClick={() => setActiveSection("manage-projects")}
             >
               <Edit className="h-5 w-5" />
@@ -722,6 +715,7 @@ export default function PortfolioEditor() {
                       <div>
                         <CustomFileInput
                           id="image"
+                          name="image"
                           label="Project Image"
                           onChange={handleFileChange}
                           required={true}
@@ -1190,6 +1184,7 @@ export default function PortfolioEditor() {
                                       <div>
                                         <CustomFileInput
                                           id="editImage"
+                                          name="editImage"
                                           label="Project Image"
                                           onChange={handleEditFileChange}
                                           className="mb-2"
@@ -1226,7 +1221,7 @@ export default function PortfolioEditor() {
                                       </div>
                                       <div>
                                         <Label htmlFor="technologies" className="text-sm font-medium">
-                                          Technologies (comma-separated)
+                                        Technologies (comma-separated)
                                         </Label>
                                         <Input
                                           id="technologies"
