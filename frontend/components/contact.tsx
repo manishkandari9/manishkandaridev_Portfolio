@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -10,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react"
 import { z } from "zod"
+import axios from "axios"
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -41,7 +41,6 @@ export default function Contact() {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
 
-    // Clear error when user starts typing
     if (errors[name as keyof FormData]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }))
     }
@@ -73,11 +72,17 @@ export default function Contact() {
 
     setIsSubmitting(true)
 
-    // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await axios.post('https://backend-cf0k.onrender.com/api/contact', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
 
-      // Success animation
+      if (response.status !== 201) {
+        throw new Error('Failed to send message')
+      }
+
       setIsSuccess(true)
 
       toast({
@@ -85,7 +90,6 @@ export default function Contact() {
         description: "Thanks for reaching out. I'll get back to you soon.",
       })
 
-      // Reset form after success
       setTimeout(() => {
         setFormData({
           name: "",

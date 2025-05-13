@@ -44,7 +44,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
             alt={project.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
-            priority // Added to optimize LCP for above-the-fold images
+            priority
           />
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <Button variant="outline" className="text-white border-white hover:bg-white/20">
@@ -81,7 +81,7 @@ function ProjectModal({ project, isOpen, onClose }: { project: Project | null; i
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">{project.title}</DialogTitle>
           <div className="mt-2">
@@ -89,7 +89,7 @@ function ProjectModal({ project, isOpen, onClose }: { project: Project | null; i
           </div>
         </DialogHeader>
 
-        <div className="relative h-64 md:h-80 overflow-hidden rounded-lg">
+        <div className="relative h-48 md:h-64 overflow-hidden rounded-lg">
           <Image
             src={project.image || "/placeholder.svg"}
             alt={project.title}
@@ -123,22 +123,32 @@ function ProjectModal({ project, isOpen, onClose }: { project: Project | null; i
           </div>
 
           <div className="flex gap-4 pt-4">
-            {project.liveLink && (
+            {project.liveLink ? (
               <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
                 <Button className="gap-2">
                   <ExternalLink className="h-4 w-4" />
                   Live Demo
                 </Button>
               </Link>
+            ) : (
+              <Button className="gap-2" disabled>
+                <ExternalLink className="h-4 w-4" />
+                Live Demo
+              </Button>
             )}
 
-            {project.codeLink && (
+            {project.codeLink ? (
               <Link href={project.codeLink} target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className="gap-2">
                   <Github className="h-4 w-4" />
                   View Code
                 </Button>
               </Link>
+            ) : (
+              <Button variant="outline" className="gap-2" disabled>
+                <Github className="h-4 w-4" />
+                View Code
+              </Button>
             )}
           </div>
         </div>
@@ -170,12 +180,13 @@ export default function Projects() {
           description: item.description,
           image: item.image || "/placeholder.svg",
           category: item.category,
-          technologies: item.technologies,
+          technologies: item.technologies || [],
           liveLink: item.liveLink,
           codeLink: item.codeLink,
-          challenge: item.challenge,
-          solution: item.solution,
+          challenge: item.challenge || "No challenge provided",
+          solution: item.solution || "No solution provided",
         }));
+        console.log("Fetched projects:", mappedData); // Debug log
         setProjects(mappedData);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -252,7 +263,7 @@ export default function Projects() {
               {filteredProjects.map((project) => (
                 <ProjectCard key={project._id} project={project} onClick={() => openProjectModal(project)} />
               ))}
-            </motion.div>
+            </motion.div >
           </AnimatePresence>
         )}
 
