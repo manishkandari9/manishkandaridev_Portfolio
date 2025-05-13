@@ -1,8 +1,8 @@
+
 "use client"
 
 import type React from "react"
-
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -82,23 +82,39 @@ export default function PortfolioEditor() {
 
   // Define interface for CustomFileInput props
   interface CustomFileInputProps {
-    id: string;
-    label: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    required?: boolean;
-    className?: string;
+    id: string
+    label: string
+    onChange: (file: File | null) => void
+    required?: boolean
+    className?: string
   }
 
-  // Custom file input component with icon
- const CustomFileInput = ({ id, label, onChange, required = false, className = "" }: CustomFileInputProps) => {
-    const [fileName, setFileName] = useState("")
+  // CustomFileInput component with ref-based handling
+  const CustomFileInput = ({ id, label, onChange, required = false, className = "" }: CustomFileInputProps) => {
+    const [fileName, setFileName] = useState<string>("")
+    const fileInputRef = useRef<HTMLInputElement>(null)
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0]
-      if (file) {
-        setFileName(file.name)
-        onChange(e)
+      const file = e.target.files?.[0] || null
+      console.log(`[CustomFileInput ${id}] File selected:`, file ? file.name : "None")
+      setFileName(file ? file.name : "")
+      onChange(file)
+    }
+
+    const handleClear = () => {
+      setFileName("")
+      onChange(null)
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "" // Reset the input
       }
+      console.log(`[CustomFileInput ${id}] File cleared`)
+    }
+
+    const handleLabelClick = () => {
+      if (fileInputRef.current) {
+        fileInputRef.current.click()
+      }
+      console.log(`[CustomFileInput ${id}] Label clicked`)
     }
 
     return (
@@ -108,37 +124,33 @@ export default function PortfolioEditor() {
         </Label>
         <div className="mt-1 relative">
           <div className="flex items-center">
-            <label
-              htmlFor={id}
+            <div
+              onClick={handleLabelClick}
               className="flex-1 flex items-center gap-2 px-4 py-2 bg-card/70 hover:bg-card/90 border border-border rounded-md cursor-pointer transition-all duration-300 hover:border-primary/50 group"
             >
               <Upload className="h-4 w-4 text-primary group-hover:scale-110 transition-transform" />
-              <span className="text-sm truncate">{fileName ? fileName : "Choose file..."}</span>
-            </label>
+              <span className="text-sm truncate">{fileName || "Choose file..."}</span>
+            </div>
             {fileName && (
               <Button
                 type="button"
                 variant="ghost"
                 size="sm"
                 className="ml-2"
-                onClick={() => {
-                  setFileName("")
-                  // Reset the file input
-                  const fileInput = document.getElementById(id) as HTMLInputElement
-                  if (fileInput) fileInput.value = ""
-                }}
+                onClick={handleClear}
               >
                 <X className="h-4 w-4" />
               </Button>
             )}
           </div>
           <input
+            ref={fileInputRef}
             id={id}
             type="file"
             accept="image/*"
             onChange={handleFileChange}
             required={required}
-            className="sr-only"
+            className="hidden"
           />
         </div>
       </div>
@@ -271,8 +283,7 @@ export default function PortfolioEditor() {
   }
 
   // Handle file input change
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null
+  const handleFileChange = (file: File | null) => {
     setProjectForm({ ...projectForm, image: file })
   }
 
@@ -284,10 +295,12 @@ export default function PortfolioEditor() {
   }
 
   // Handle edit project file change
-  const handleEditFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null
+  const handleEditFileChange = (file: File | null) => {
     if (editProjectForm) {
-      setEditProjectForm({ ...editProjectForm, image: file ? URL.createObjectURL(file) : editProjectForm.image })
+      setEditProjectForm({
+        ...editProjectForm,
+        image: file ? URL.createObjectURL(file) : editProjectForm.image,
+      })
     }
   }
 
@@ -589,6 +602,24 @@ export default function PortfolioEditor() {
                 activeSection === "manage-projects" &&
                   "bg-gradient-to-r from-primary/90 to-purple-600/90 text-white shadow-md",
               )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               onClick={() => setActiveSection("manage-projects")}
             >
               <Edit className="h-5 w-5" />
@@ -688,7 +719,22 @@ export default function PortfolioEditor() {
                         />
                       </div>
 
-                      <CustomFileInput id="image" label="Project Image" onChange={handleFileChange} required={true} />
+                      <div>
+                        <CustomFileInput
+                          id="image"
+                          label="Project Image"
+                          onChange={handleFileChange}
+                          required={true}
+                          className="mb-2"
+                        />
+                        {projectForm.image && (
+                          <img
+                            src={URL.createObjectURL(projectForm.image)}
+                            alt="Preview"
+                            className="mt-2 h-32 object-cover rounded-md"
+                          />
+                        )}
+                      </div>
 
                       <div>
                         <Label htmlFor="technologies" className="text-sm font-medium">
