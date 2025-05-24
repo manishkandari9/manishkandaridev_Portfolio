@@ -47,7 +47,7 @@ export const portfolioData: PortfolioData = {
         label: "Hours Coded",
       },
     ],
-    timeline: [
+    // timeline: [
       {
         id: "timeline-1",
         year: "2022",
@@ -77,7 +77,7 @@ export const portfolioData: PortfolioData = {
           "Officially established my freelance business, offering web development, UI/UX design, and consulting services to clients worldwide.",
       },
     ],
-  },
+  },//
   skills: {
     title: "My Skills",
     subtitle:
