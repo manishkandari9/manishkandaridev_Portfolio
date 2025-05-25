@@ -47,41 +47,7 @@ export const portfolioData: PortfolioData = {
         label: "Hours Coded",
       },
     ],
-<<<<<<< HEAD
-   /* timeline: [
-      {
-        id: "timeline-1",
-        year: "2022",
-        title: "Started Computer Science Degree",
-        description:
-          "Began my formal education in Computer Science, focusing on algorithms, data structures, and software engineering principles.",
-      },
-      {
-        id: "timeline-2",
-        year: "2021",
-        title: "First Freelance Project",
-        description:
-          "Completed my first paid project, a responsive website for a local business, which sparked my passion for freelance development.",
-      },
-      {
-        id: "timeline-3",
-        year: "2022",
-        title: "Internship at Tech Startup",
-        description:
-          "Gained valuable industry experience working with a team of developers on a SaaS product, honing my skills in modern web technologies.",
-      },
-      {
-        id: "timeline-4",
-        year: "2023",
-        title: "Launched Freelance Business",
-        description:
-          "Officially established my freelance business, offering web development, UI/UX design, and consulting services to clients worldwide.",
-      },
-    ],
-  },*/
-=======
   },
->>>>>>> 46f0a68 (add authnication in admin page)
   skills: {
     title: "My Skills",
     subtitle:
