@@ -245,7 +245,7 @@
 //           </p>
 //           <Link href="#contact">
 //             <Button size="lg" className="bg-primary hover:bg-primary/90">
-//               Get in Touch
+//               {/* Get in Touch */}
 //             </Button>
 //           </Link>
 //         </motion.div>
