@@ -379,6 +379,6 @@ export const portfolioData: PortfolioData = {
   },
   siteInfo: {
     name: "Manish Kandari",
-    footerText: "Built with Next.js, TailwindCSS, and Framer Motion",
+    footerText: "pookie Cutie",
   },
 }
