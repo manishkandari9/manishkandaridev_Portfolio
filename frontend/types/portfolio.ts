@@ -1,13 +1,7 @@
+
 // Define types for all dynamic content in the portfolio
 
 // About Section
-export type TimelineItem = {
-  id: string
-  year: string
-  title: string
-  description: string
-}
-
 export type CounterItem = {
   id: string
   icon: string
@@ -21,7 +15,6 @@ export type AboutData = {
   description: string[]
   image: string
   counters: CounterItem[]
-  timeline: TimelineItem[]
 }
 
 // Skills Section

@@ -48,46 +48,6 @@ function Counter({ icon, value, label, duration = 2 }: CounterProps) {
   )
 }
 
-type TimelineItemProps = {
-  year: string
-  title: string
-  description: string
-  index: number
-}
-
-function TimelineItem({ year, title, description, index }: TimelineItemProps) {
-  const itemRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(itemRef, { once: true, margin: "-100px" })
-
-  return (
-    <motion.div
-      ref={itemRef}
-      className="relative flex items-start gap-4 md:gap-8"
-      initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      {/* Year Badge */}
-      <div className="flex flex-col items-center z-10">
-        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-base">
-          {year}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="pb-8">
-        <h3 className="text-lg font-bold">{title}</h3>
-        <p className="text-muted-foreground">{description}</p>
-      </div>
-
-      {/* Connecting Line */}
-      {index < 3 && (
-        <div className="absolute left-6 top-12 w-0.5 h-[calc(100%-3rem)] bg-border" />
-      )}
-    </motion.div>
-  )
-}
-
 export default function About() {
   const { about } = usePortfolio()
   const sectionRef = useRef<HTMLElement>(null)
@@ -158,26 +118,6 @@ export default function About() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          className="mt-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          <h3 className="text-2xl font-bold text-center mb-12">My Journey</h3>
-          <div className="max-w-3xl mx-auto">
-            {about.timeline.map((item, index) => (
-              <TimelineItem
-                key={item.id}
-                year={item.year}
-                title={item.title}
-                description={item.description}
-                index={index}
-              />
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   )

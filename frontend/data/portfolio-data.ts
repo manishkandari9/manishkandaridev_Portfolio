@@ -47,6 +47,7 @@ export const portfolioData: PortfolioData = {
         label: "Hours Coded",
       },
     ],
+<<<<<<< HEAD
    /* timeline: [
       {
         id: "timeline-1",
@@ -78,6 +79,9 @@ export const portfolioData: PortfolioData = {
       },
     ],
   },*/
+=======
+  },
+>>>>>>> 46f0a68 (add authnication in admin page)
   skills: {
     title: "My Skills",
     subtitle:

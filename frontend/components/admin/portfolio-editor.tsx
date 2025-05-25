@@ -1,4 +1,3 @@
-
 "use client"
 
 import type React from "react"
@@ -20,11 +19,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { InfoIcon, PlusCircle, Trash2, Star, LayoutGrid, FilePlus, Edit, Upload, Menu, X, MoreVertical, ChevronRight, Check } from "lucide-react"
+import { InfoIcon, PlusCircle, Trash2, Star, LayoutGrid, FilePlus, Edit, Upload, Menu, X, MoreVertical, ChevronRight, Check, LogOut } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import axios from "axios"
 import { format, parseISO } from "date-fns"
 import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation" // Added import for useRouter
 
 interface FeedbackItem {
   id: string
@@ -39,7 +39,7 @@ interface ProjectItem {
   id: string
   title: string
   description: string
-  image: string // URL from Cloudinary
+  image: string
   category: "web" | "mobile" | "backend" | "ui/ux"
   technologies: string[]
   liveLink: string
@@ -50,6 +50,7 @@ interface ProjectItem {
 
 export default function PortfolioEditor() {
   const { toast } = useToast()
+  const router = useRouter() // Added router for navigation
   const [activeSection, setActiveSection] = useState<"project" | "feedback" | "manage-projects">("project")
   const [projectForm, setProjectForm] = useState({
     title: "",
@@ -71,7 +72,6 @@ export default function PortfolioEditor() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
 
-  // New state for Manage Projects
   const [projects, setProjects] = useState<ProjectItem[]>([])
   const [editProjectForm, setEditProjectForm] = useState<ProjectItem | null>(null)
   const [isUpdating, setIsUpdating] = useState(false)
@@ -105,7 +105,7 @@ export default function PortfolioEditor() {
       setFileName("")
       onChange(null)
       if (fileInputRef.current) {
-        fileInputRef.current.value = "" // Reset the input
+        fileInputRef.current.value = ""
       }
       console.log(`[CustomFileInput ${id}] File cleared`)
     }
@@ -219,11 +219,38 @@ export default function PortfolioEditor() {
     fetchProjects()
   }, [])
 
+  // Handle logout functionality (Added)
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "https://backend-cf0k.onrender.com/auth/logout",
+        {},
+        { withCredentials: true }
+      )
+      if (response.status === 200) {
+        toast({
+          title: "Logged Out",
+          description: response.data.message || "You have been successfully logged out.",
+          className: "bg-green-500 text-white",
+        })
+        router.push("/admin")
+      } else {
+        throw new Error("Failed to log out")
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to log out. Please try again.",
+        variant: "destructive",
+      })
+      console.error("Logout error:", error)
+    }
+  }
+
   // Handle project form submission (Add Project) with custom validation
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Custom validation for image
     if (!projectForm.image) {
       toast({
         title: "Validation Error",
@@ -272,7 +299,7 @@ export default function PortfolioEditor() {
           challenge: "",
           solution: "",
         })
-        fetchProjects() // Refresh projects list
+        fetchProjects()
       } else {
         throw new Error("Failed to add project")
       }
@@ -288,24 +315,20 @@ export default function PortfolioEditor() {
     }
   }
 
-  // Handle project form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setProjectForm({ ...projectForm, [e.target.name]: e.target.value })
   }
 
-  // Handle file input change
   const handleFileChange = (file: File | null) => {
     setProjectForm({ ...projectForm, image: file })
   }
 
-  // Handle edit project form input changes
   const handleEditChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (editProjectForm) {
       setEditProjectForm({ ...editProjectForm, [e.target.name]: e.target.value })
     }
   }
 
-  // Handle edit project file change
   const handleEditFileChange = (file: File | null) => {
     if (editProjectForm) {
       setEditProjectForm({
@@ -315,7 +338,6 @@ export default function PortfolioEditor() {
     }
   }
 
-  // Handle project update
   const handleUpdateProject = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!editProjectForm) return
@@ -372,7 +394,6 @@ export default function PortfolioEditor() {
     }
   }
 
-  // Handle project deletion
   const handleDeleteProject = async (id: string) => {
     setIsDeletingProject(id)
     try {
@@ -395,7 +416,6 @@ export default function PortfolioEditor() {
     }
   }
 
-  // Handle feedback deletion
   const handleDeleteFeedback = async (id: string) => {
     setIsDeleting(id)
     try {
@@ -418,7 +438,6 @@ export default function PortfolioEditor() {
     }
   }
 
-  // Handle feedback approval status edit
   const handleEditFeedback = async (id: string, approved: boolean) => {
     setIsEditing(id)
     try {
@@ -441,7 +460,6 @@ export default function PortfolioEditor() {
     }
   }
 
-  // Filter and sort feedback
   const filteredAndSortedFeedback = feedbackItems
     .filter((item) => {
       if (filter === "approved") return item.approved
@@ -456,23 +474,19 @@ export default function PortfolioEditor() {
       return 0
     })
 
-  // Pagination logic for feedback
   const totalPages = Math.ceil(filteredAndSortedFeedback.length / itemsPerPage)
   const paginatedFeedback = filteredAndSortedFeedback.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   )
 
-  // Improved bento grid layout for better responsiveness
   const getBentoLayout = (index: number) => {
-    // For smaller screens: simpler layout
     const smallScreen = typeof window !== "undefined" && window.innerWidth < 640
 
     if (smallScreen) {
       return "col-span-full xs:col-span-1"
     }
 
-    // For medium screens and larger: more complex layout
     switch (index % 6) {
       case 0:
         return "col-span-full sm:col-span-2 row-span-1"
@@ -493,7 +507,6 @@ export default function PortfolioEditor() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-purple-500/10">
-      {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 bg-card/80 backdrop-blur-md border-b border-border/30 sticky top-0 z-50 shadow-md">
         <h2 className="text-lg font-bold text-primary">Portfolio Admin</h2>
         <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="relative">
@@ -501,7 +514,6 @@ export default function PortfolioEditor() {
         </Button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -568,13 +580,27 @@ export default function PortfolioEditor() {
                 Manage Projects
                 <ChevronRight className="ml-auto h-4 w-4" />
               </Button>
+              {/* Added Logout Button for Mobile Menu */}
+              <Button
+                variant="ghost"
+                className={cn(
+                  "justify-start gap-2 transition-all duration-300 hover:bg-red-500/10 hover:text-red-500",
+                )}
+                onClick={() => {
+                  handleLogout()
+                  setMobileMenuOpen(false)
+                }}
+              >
+                <LogOut className="h-5 w-5" />
+                Logout
+                <ChevronRight className="ml-auto h-4 w-4" />
+              </Button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <div className="flex">
-        {/* Desktop Sidebar */}
         <motion.div
           className="w-64 bg-card/40 backdrop-blur-md border-r border-border/30 p-6 flex-col gap-4 fixed h-full shadow-xl z-10 hidden md:flex"
           initial={{ x: -80, opacity: 0 }}
@@ -618,10 +644,20 @@ export default function PortfolioEditor() {
               <Edit className="h-5 w-5" />
               Manage Projects
             </Button>
+            {/* Added Logout Button for Desktop Sidebar */}
+            <Button
+              variant="ghost"
+              className={cn(
+                "justify-start gap-2 transition-all duration-300 hover:bg-red-500/10 hover:text-red-500 mt-auto",
+              )}
+              onClick={handleLogout}
+            >
+              <LogOut className="h-5 w-5" />
+              Logout
+            </Button>
           </div>
         </motion.div>
 
-        {/* Main Content */}
         <div className="flex-1 md:ml-64 p-4 md:p-6 lg:p-10 overflow-hidden w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
