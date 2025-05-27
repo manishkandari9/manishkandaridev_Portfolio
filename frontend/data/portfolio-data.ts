@@ -19,7 +19,7 @@ export const portfolioData: PortfolioData = {
     },
   },
   about: {
-    title: "About Me",
+    title: "Manish Kandari",
     subtitle:
       "I'm a passionate Computer Science student and freelance developer with a focus on creating beautiful, functional web experiences.",
     description: [
