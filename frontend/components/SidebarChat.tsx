@@ -59,11 +59,12 @@ export default function AIChatbotWidget() {
       const response = await axios.post(
         "https://backend-cf0k.onrender.com/n8nchat",
         { message: inputValue },
-        { timeout: 10000 } // timeout 10s for safety
+        { headers: { "Content-Type": "application/json" }, timeout: 15000 }
       )
 
+      // Backend ka response safe check
       const aiContent =
-        response?.data?.response && response.data.response.trim()
+        response?.data?.response && typeof response.data.response === "string"
           ? response.data.response
           : "Sorry, I couldn't process your request."
 
@@ -75,12 +76,14 @@ export default function AIChatbotWidget() {
       }
 
       setMessages((prev) => [...prev, aiMessage])
-    } catch (err) {
-      console.error("Error communicating with backend:", err)
+    } catch (err: any) {
+      console.error("Axios Error:", err.response?.data || err.message)
 
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: "Oops, something went wrong. Please try again later.",
+        content:
+          err.response?.data?.response ||
+          "Oops, something went wrong. Please try again later.",
         isUser: false,
         timestamp: new Date(),
       }
