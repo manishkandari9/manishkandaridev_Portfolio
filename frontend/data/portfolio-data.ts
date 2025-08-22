@@ -23,8 +23,9 @@ export const portfolioData: PortfolioData = {
     subtitle:
       "I'm a passionate Computer Science student and freelance developer with a focus on creating beautiful, functional web experiences.",
     description: [
-      "I'm a passionate Computer Science student and freelance developer with a focus on creating beautiful, functional web experiences. With a strong foundation in both frontend and backend technologies, I bring ideas to life through clean code and intuitive design.",
-      "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through my blog. I believe in continuous learning and pushing the boundaries of what's possible on the web.",
+      "I am a freelance developer dedicated to crafting beautiful, functional web experiences and intelligent applications. With a strong foundation in both frontend and backend technologies, I specialize in building a wide range of solutions—from simple websites and complex e-commerce platforms to mobile apps and voice/AI agents.",
+"My approach combines clean code with intuitive design, bringing ideas to life with tailored end-to-end solutions that meet diverse client needs. When I'm not coding, I enjoy exploring emerging technologies, contributing to open-source projects, and sharing knowledge through my blog. I believe in continuous learning and pushing the boundaries of what's possible on the web and beyond.",
+"Whether it's crafting seamless user interfaces, developing powerful backend systems, or building innovative voice and chat agents, I am committed to creating next-generation digital experiences that empower users and businesses alike.",
     ],
     image: "/my.jpg?height=400&width=400",
     counters: [

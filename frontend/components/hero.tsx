@@ -9,7 +9,8 @@ import ParticleBackground from "@/components/particle-background"
 
 export default function Hero() {
   const [text, setText] = useState("")
-  const fullText = "CS Student & Freelance Web/Backend Developer"
+  const fullText = "Building digital dreams with code and creativity."
+
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Building sleek websites & powerful backends with React, Node.js, and more. Let’s create something epic!
+            Crafting seamless web experiences and robust backend solutions with React, Node.js, and cutting-edge tech. Ready to build your vision?
           </motion.p>
 
           <motion.div
@@ -69,7 +70,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            <Link href="/projects">
+            <Link href="#projects">
               <Button
                 size="lg"
                 className="min-w-[180px] bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold transform hover:scale-105 transition-transform"
@@ -77,7 +78,7 @@ export default function Hero() {
                 See My Projects
               </Button>
             </Link>
-            <Link href="/contact">
+            <Link href="#contact">
               <Button
                 size="lg"
                 variant="outline"
