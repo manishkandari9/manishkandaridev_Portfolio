@@ -54,18 +54,39 @@ export default function AIChatbotWidget() {
     setInputValue("")
     setIsTyping(true)
 
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      // 🔗 Backend को call करो (जो n8n से जुड़ा है)
+      const response = await fetch("https://backend-cf0k.onrender.com/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: newMessage.content, userId: "frontend-user" }),
+      })
+
+      const data = await response.json()
+
+      // मान लो backend reply में { reply: "..." } return करता है
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        content:
-          "I understand your message. This is a demo response from your Best AI Agent. In a real implementation, this would connect to an actual AI service to provide intelligent assistance.",
+        content: data.reply || "No response from AI",
         isUser: false,
         timestamp: new Date(),
       }
+
       setMessages((prev) => [...prev, aiResponse])
+    } catch (error) {
+      console.error("Chat error:", error)
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          content: "⚠️ Error: Unable to connect to backend",
+          isUser: false,
+          timestamp: new Date(),
+        },
+      ])
+    } finally {
       setIsTyping(false)
-    }, 2000)
+    }
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -75,14 +96,8 @@ export default function AIChatbotWidget() {
     }
   }
 
-  const toggleRecording = () => {
-    setIsRecording(!isRecording)
-  }
-
-  const toggleSpeaking = () => {
-    setIsSpeaking(!isSpeaking)
-  }
-
+  const toggleRecording = () => setIsRecording(!isRecording)
+  const toggleSpeaking = () => setIsSpeaking(!isSpeaking)
 
   return (
     <>
@@ -135,42 +150,36 @@ export default function AIChatbotWidget() {
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.map((message) => (
                 <div
-  key={message.id}
-  className={`flex ${message.isUser ? "justify-end" : "justify-start"} animate-slide-up`}
->
-  {message.isUser ? (
-    // ✅ User bubble (right, same UI as bot but without avatar)
-    <div className="flex flex-col items-end max-w-[75%]">
-      <div className="relative bg-muted text-muted-foreground rounded-lg px-4 py-2 shadow-sm">
-        <p className="whitespace-pre-wrap">{message.content}</p>
-      </div>
-      <span className="text-[10px] text-muted-foreground mt-1 mr-2 select-none">
-        {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-      </span>
-    </div>
-  ) : (
-    // ✅ Bot bubble (left, with avatar)
-    <div className="flex items-start gap-2 max-w-[75%]">
-      {/* Avatar */}
-      <div className="w-8 h-8 shrink-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg">
-        <span className="text-xs">M</span> 
-      </div>
-      {/* Message */}
-      <div className="flex flex-col">
-        <div className="relative bg-muted text-muted-foreground rounded-lg px-4 py-2 shadow-sm">
-          <p className="whitespace-pre-wrap">{message.content}</p>
-        </div>
-        <span className="text-[10px] text-muted-foreground mt-1 ml-2 select-none">
-          {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-        </span>
-      </div>
-    </div>
-  )}
-</div>
-
+                  key={message.id}
+                  className={`flex ${message.isUser ? "justify-end" : "justify-start"} animate-slide-up`}
+                >
+                  {message.isUser ? (
+                    <div className="flex flex-col items-end max-w-[75%]">
+                      <div className="relative bg-muted text-muted-foreground rounded-lg px-4 py-2 shadow-sm">
+                        <p className="whitespace-pre-wrap">{message.content}</p>
+                      </div>
+                      <span className="text-[10px] text-muted-foreground mt-1 mr-2 select-none">
+                        {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="flex items-start gap-2 max-w-[75%]">
+                      <div className="w-8 h-8 shrink-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg">
+                        <span className="text-xs">M</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="relative bg-muted text-muted-foreground rounded-lg px-4 py-2 shadow-sm">
+                          <p className="whitespace-pre-wrap">{message.content}</p>
+                        </div>
+                        <span className="text-[10px] text-muted-foreground mt-1 ml-2 select-none">
+                          {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
 
-              {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex justify-start animate-fade-in">
                   <div className="bg-muted p-3 rounded-2xl mr-4">
@@ -190,7 +199,6 @@ export default function AIChatbotWidget() {
               <div ref={messagesEndRef} />
             </div>
 
-
             {/* Input Area */}
             <div className="p-4 border-t border-border">
               <div className="flex items-center gap-2">
@@ -204,18 +212,10 @@ export default function AIChatbotWidget() {
                     className="pr-20 focus:ring-2 focus:ring-primary transition-all duration-300"
                   />
                   <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300"
-                    >
+                    <Button variant="ghost" size="sm" className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300">
                       <Smile className="w-4 h-4 text-muted-foreground" />
                     </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300"
-                    >
+                    <Button variant="ghost" size="sm" className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300">
                       <Paperclip className="w-4 h-4 text-muted-foreground" />
                     </Button>
                   </div>
@@ -246,18 +246,17 @@ export default function AIChatbotWidget() {
         )}
 
         {!isOpen && (
-  <Button
-    onClick={() => setIsOpen(true)}
-    className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
-  >
-    <div className="relative">
-      <MessageCircle className="w-6 h-6 text-white animate-bounce group-hover:animate-pulse transition-transform duration-300" />
-      <div className="absolute inset-0 rounded-full border-2 border-white/30 animate-ping" />
-      <div className="absolute -inset-1 rounded-full border border-white/20 animate-pulse" />
-    </div>
-  </Button>
-)}
-
+          <Button
+            onClick={() => setIsOpen(true)}
+            className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
+          >
+            <div className="relative">
+              <MessageCircle className="w-6 h-6 text-white animate-bounce group-hover:animate-pulse transition-transform duration-300" />
+              <div className="absolute inset-0 rounded-full border-2 border-white/30 animate-ping" />
+              <div className="absolute -inset-1 rounded-full border border-white/20 animate-pulse" />
+            </div>
+          </Button>
+        )}
       </div>
 
       <style jsx>{`
@@ -271,33 +270,18 @@ export default function AIChatbotWidget() {
             transform: translateY(0);
           }
         }
-        
         @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
-        
-        .animate-slide-up {
-          animation: slide-up 0.3s ease-out;
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
-        }
-        
+        .animate-slide-up { animation: slide-up 0.3s ease-out; }
+        .animate-fade-in { animation: fade-in 0.3s ease-out; }
         .glass-effect {
           background: rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(10px);
           border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
-        .neon-glow {
-          box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-        }
+        .neon-glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
       `}</style>
     </>
   )
