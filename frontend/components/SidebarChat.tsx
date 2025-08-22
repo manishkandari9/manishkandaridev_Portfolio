@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
+import axios from "axios" // Import axios
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
@@ -55,35 +56,27 @@ export default function AIChatbotWidget() {
     setIsTyping(true)
 
     try {
-      // 🔗 Backend को call करो (जो n8n से जुड़ा है)
-      const response = await fetch("https://backend-cf0k.onrender.com/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: newMessage.content, userId: "frontend-user" }),
+      const response = await axios.post("https://backend-cf0k.onrender.com/n8nchat", {
+        message: inputValue,
       })
 
-      const data = await response.json()
-
-      // मान लो backend reply में { reply: "..." } return करता है
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        content: data.reply || "No response from AI",
+        content: response.data.response || "Sorry, I couldn't process your request.",
         isUser: false,
         timestamp: new Date(),
       }
 
       setMessages((prev) => [...prev, aiResponse])
     } catch (error) {
-      console.error("Chat error:", error)
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          content: "⚠️ Error: Unable to connect to backend",
-          isUser: false,
-          timestamp: new Date(),
-        },
-      ])
+      console.error("Error communicating with backend:", error)
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "Oops, something went wrong. Please try again later.",
+        isUser: false,
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, errorMessage])
     } finally {
       setIsTyping(false)
     }
@@ -96,8 +89,13 @@ export default function AIChatbotWidget() {
     }
   }
 
-  const toggleRecording = () => setIsRecording(!isRecording)
-  const toggleSpeaking = () => setIsSpeaking(!isSpeaking)
+  const toggleRecording = () => {
+    setIsRecording(!isRecording)
+  }
+
+  const toggleSpeaking = () => {
+    setIsSpeaking(!isSpeaking)
+  }
 
   return (
     <>
@@ -212,10 +210,18 @@ export default function AIChatbotWidget() {
                     className="pr-20 focus:ring-2 focus:ring-primary transition-all duration-300"
                   />
                   <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                    <Button variant="ghost" size="sm" className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300"
+                    >
                       <Smile className="w-4 h-4 text-muted-foreground" />
                     </Button>
-                    <Button variant="ghost" size="sm" className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300"
+                    >
                       <Paperclip className="w-4 h-4 text-muted-foreground" />
                     </Button>
                   </div>
@@ -270,18 +276,33 @@ export default function AIChatbotWidget() {
             transform: translateY(0);
           }
         }
+        
         @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
-        .animate-slide-up { animation: slide-up 0.3s ease-out; }
-        .animate-fade-in { animation: fade-in 0.3s ease-out; }
+        
+        .animate-slide-up {
+          animation: slide-up 0.3s ease-out;
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+        
         .glass-effect {
           background: rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(10px);
           border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .neon-glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+        
+        .neon-glow {
+          box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
       `}</style>
     </>
   )
