@@ -4,6 +4,7 @@ import { Inter, Fira_Code } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import AnimatedCursor from "@/components/animated-cursor"
 import { PortfolioProvider } from "@/context/portfolio-context"
+import SidebarChat from "@/components/SidebarChat"; 
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <PortfolioProvider>
             {children}
+            <SidebarChat />
             <AnimatedCursor />
           </PortfolioProvider>
         </ThemeProvider>
