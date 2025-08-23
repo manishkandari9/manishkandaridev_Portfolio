@@ -1,9 +1,5 @@
-# *
 User-agent: *
 Allow: /
-
-# Host
-Host: https://manishkandaridev-portfolio.vercel.app
-
-# Sitemaps
+Disallow: /admin
+Disallow: /admin/portfolio-editor
 Sitemap: https://manishkandaridev-portfolio.vercel.app/sitemap.xml
