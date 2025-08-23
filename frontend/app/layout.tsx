@@ -19,7 +19,10 @@ const firaCode = Fira_Code({
 export const metadata = {
   title: "Manish Kandari - CS Student & Freelance Developer",
   description: "Personal portfolio of Manish Kandari, Computer Science student and freelance developer",
-    generator: 'v0.dev'
+  generator: "v0.dev",
+  verification: {
+    google: "DC9RwBYsHzEw_9rl17b4knQk1Iyi1UpIXP3fl9_39do", // 👈 Google Search Console se mila code
+  },
 }
 
 export default function RootLayout({
@@ -30,7 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${firaCode.variable} font-sans`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="dark" 
+          enableSystem={false} 
+          disableTransitionOnChange
+        >
           <PortfolioProvider>
             {children}
             <SidebarChat />
