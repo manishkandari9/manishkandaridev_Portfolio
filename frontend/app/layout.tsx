@@ -4,7 +4,7 @@ import { Inter, Fira_Code } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import AnimatedCursor from "@/components/animated-cursor"
 import { PortfolioProvider } from "@/context/portfolio-context"
-import SidebarChat from "@/components/SidebarChat"; 
+import SidebarChat from "@/components/SidebarChat"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,7 +21,10 @@ export const metadata = {
   description: "Personal portfolio of Manish Kandari, Computer Science student and freelance developer",
   generator: "v0.dev",
   verification: {
-    google: "DC9RwBYsHzEw_9rl17b4knQk1Iyi1UpIXP3fl9_39do", // 👈 Google Search Console se mila code
+    google: "DC9RwBYsHzEw_9rl17b4knQk1Iyi1UpIXP3fl9_39do", // Google Search Console verification
+  },
+  alternates: {
+    canonical: "https://manishkandaridev-portfolio.vercel.app/", // 👈 Canonical URL
   },
 }
 
@@ -33,10 +36,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${firaCode.variable} font-sans`}>
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="dark" 
-          enableSystem={false} 
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <PortfolioProvider>
