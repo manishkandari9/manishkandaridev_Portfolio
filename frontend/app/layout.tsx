@@ -21,10 +21,10 @@ export const metadata = {
   description: "Personal portfolio of Manish Kandari, Computer Science student and freelance developer",
   generator: "v0.dev",
   verification: {
-    google: "DC9RwBYsHzEw_9rl17b4knQk1Iyi1UpIXP3fl9_39do", // Google Search Console verification
+    google: "RPZscNG2IE6ilwk9ucg1i_1k78MOUuRerNtQkbwpoos", // Google Search Console verification
   },
   alternates: {
-    canonical: "https://manishkandaridev-portfolio.vercel.app/", // 👈 Canonical URL
+    canonical: "https://manishkandaridev-portfolio.vercel.app/", // 👈 Canonical URL   
   },
 }
 
