@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Coffee, Code, Clock } from "lucide-react"
@@ -88,7 +87,14 @@ export default function About() {
             className="relative"
           >
             <div className="relative h-[400px] w-full overflow-hidden rounded-xl">
-              <Image src={about.image || "/img.jpg"} alt={about.title} fill className="object-cover" />
+              <Image
+                src={about.image || "/my.jpg"}
+                alt={about.title}
+                width={400}
+                height={400}
+                className="object-cover"
+                priority
+              />
             </div>
             <div className="absolute -bottom-6 -right-6 h-40 w-40 bg-primary/10 rounded-xl border border-primary"></div>
           </motion.div>
