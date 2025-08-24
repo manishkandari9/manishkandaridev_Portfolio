@@ -1,16 +1,20 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://manishkandaridev-portfolio.vercel.app',
-  generateRobotsTxt: true,           // robots.txt auto generate
-  exclude: ['/admin', '/admin/portfolio-editor'], // Admin pages exclude
-  sitemapSize: 5000,                 // Sitemap size limit
+  generateRobotsTxt: true,
+  exclude: ['/admin', '/admin/portfolio-editor'],
+  sitemapSize: 5000,
+  additionalPaths: async (config) => [
+    {
+      loc: 'https://face-recognition-based-attendance-system-z5gk.onrender.com',
+      changefreq: 'weekly',
+      priority: 0.8,
+    },
+  ],
   robotsTxtOptions: {
     policies: [
-      { userAgent: '*', allow: '/' }, // Public pages crawl
-      { userAgent: '*', disallow: ['/admin', '/admin/portfolio-editor'] }, // Admin block
-    ],
-    additionalSitemaps: [
-      'https://manishkandaridev-portfolio.vercel.app/sitemap.xml', // Sitemap URL
+      { userAgent: '*', allow: '/' },
+      { userAgent: '*', disallow: ['/admin', '/admin/portfolio-editor'] },
     ],
   },
 };
