@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://manishkandari-dev-portfolio.vercel.app/sitemap.xml
+Sitemap: https://manishkandaridev-portfolio.vercel.app/sitemap.xml
 
 # Optional: Exclude private or development routes (if any)
 Disallow: /private/
