@@ -1,28 +1,21 @@
-/** next-sitemap.config.js **/
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://manishkandaridev-portfolio.vercel.app',
-  generateRobotsTxt: false, // ✅ robots.txt ko generate na kare
+  generateRobotsTxt: true,
   sitemapSize: 5000,
+  exclude: ['/admin', '/admin/**', '/admin/portfolio-editor'], // exclude admin properly
+
   additionalPaths: async (config) => [
-    {
-      loc: 'https://manishkandaridev-portfolio.vercel.app/',
-      changefreq: 'daily',
-      priority: 0.7,
-    },
-    {
-      loc: 'https://manishkandaridev-portfolio.vercel.app/projects',
-      changefreq: 'daily',
-      priority: 0.9,
-    },
-    {
-      loc: 'https://manishkandaridev-portfolio.vercel.app/feedback',
-      changefreq: 'weekly',
-      priority: 0.7,
-    },
-    {
-      loc: 'https://manishkandaridev-portfolio.vercel.app/about',
-      changefreq: 'weekly',
-      priority: 0.7,
-    },
+    // Root / removed to avoid duplicate
+    { loc: '/projects', changefreq: 'daily', priority: 0.9 },
+    { loc: '/feedback', changefreq: 'weekly', priority: 0.7 },
+    { loc: '/about', changefreq: 'weekly', priority: 0.7 },
   ],
+
+  robotsTxtOptions: {
+    policies: [
+      { userAgent: '*', allow: '/', disallow: ['/admin', '/admin/portfolio-editor'] },
+    ],
+    additionalSitemaps: ['https://manishkandaridev-portfolio.vercel.app/sitemap.xml'],
+  },
 };
