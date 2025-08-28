@@ -1,4 +1,4 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
 
 async function getDynamicPages() {
   // Fetch data from backend APIs
@@ -13,30 +13,32 @@ async function getDynamicPages() {
   return { projects, feedback, contact };
 }
 
+const DOMAIN = 'https://manishkandaridev-portfolio.vercel.app'; // Correct domain
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { projects, feedback, contact } = await getDynamicPages();
 
   const staticPages = [
     {
-      url: 'https://manishkandari-dev-portfolio.vercel.app/',
-      lastModified: new Date('2025-08-28T06:10:00Z'), // 11:40 AM IST converted to UTC
+      url: `${DOMAIN}/`,
+      lastModified: new Date('2025-08-28T06:10:00Z'),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: 'https://manishkandari-dev-portfolio.vercel.app/about',
+      url: `${DOMAIN}/about`,
       lastModified: new Date('2025-08-28T06:10:00Z'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://manishkandari-dev-portfolio.vercel.app/skills',
+      url: `${DOMAIN}/skills`,
       lastModified: new Date('2025-08-28T06:10:00Z'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://manishkandari-dev-portfolio.vercel.app/services',
+      url: `${DOMAIN}/services`,
       lastModified: new Date('2025-08-28T06:10:00Z'),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -45,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const dynamicPages = [
     ...projects.map((project: any) => ({
-      url: `https://manishkandari-dev-portfolio.vercel.app/projects/${project._id}`,
+      url: `${DOMAIN}/projects/${project._id}`,
       lastModified: project.date ? new Date(project.date) : new Date('2025-08-28T06:10:00Z'),
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -53,13 +55,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...feedback
       .filter((item: any) => item.approved)
       .map((item: any) => ({
-        url: `https://manishkandari-dev-portfolio.vercel.app/feedback/${item._id}`,
+        url: `${DOMAIN}/feedback/${item._id}`,
         lastModified: item.date ? new Date(item.date) : new Date('2025-08-28T06:10:00Z'),
         changeFrequency: 'weekly',
         priority: 0.6,
       })),
     {
-      url: `https://manishkandari-dev-portfolio.vercel.app/contact`,
+      url: `${DOMAIN}/contact`,
       lastModified: contact.date ? new Date(contact.date) : new Date('2025-08-28T06:10:00Z'),
       changeFrequency: 'monthly',
       priority: 0.7,
