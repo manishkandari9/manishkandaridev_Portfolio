@@ -1,8 +1,7 @@
-/** @type {import('next-sitemap').IConfig} */
+/** next-sitemap.config.js **/
 module.exports = {
   siteUrl: 'https://manishkandaridev-portfolio.vercel.app',
-  generateRobotsTxt: true,
-  exclude: ['/admin', '/admin/portfolio-editor'],
+  generateRobotsTxt: false, // ✅ robots.txt ko generate na kare
   sitemapSize: 5000,
   additionalPaths: async (config) => [
     {
@@ -26,10 +25,4 @@ module.exports = {
       priority: 0.7,
     },
   ],
-  robotsTxtOptions: {
-    policies: [
-      { userAgent: '*', allow: '/' },
-      { userAgent: '*', disallow: ['/admin', '/admin/portfolio-editor'] },
-    ],
-  },
 };
