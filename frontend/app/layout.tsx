@@ -1,4 +1,4 @@
-import type React from "react"
+import type { ReactNode } from "react"
 import "@/app/globals.css"
 import { Inter, Fira_Code } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -6,14 +6,17 @@ import AnimatedCursor from "@/components/animated-cursor"
 import { PortfolioProvider } from "@/context/portfolio-context"
 import SidebarChat from "@/components/SidebarChat"
 
+// Fonts
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 })
 
 const firaCode = Fira_Code({
   subsets: ["latin"],
   variable: "--font-fira-code",
+  display: "swap",
 })
 
 export const metadata = {
@@ -21,18 +24,18 @@ export const metadata = {
   description: "Personal portfolio of Manish Kandari, Computer Science student and freelance developer",
   generator: "v0.dev",
   verification: {
-    google: "DC9RwBYsHzEw_9rl17b4knQk1Iyi1UpIXP3fl9_39do", // Google Search Console verification
+    google: "DC9RwBYsHzEw_9rl17b4knQk1Iyi1UpIXP3fl9_39do",
   },
   alternates: {
-    canonical: "https://manishkandaridev-portfolio.vercel.app/", // 👈 Canonical URL
+    canonical: "https://manishkandaridev-portfolio.vercel.app/",
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+interface RootLayoutProps {
+  children: ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${firaCode.variable} font-sans`}>
