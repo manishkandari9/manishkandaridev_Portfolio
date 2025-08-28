@@ -1,6 +1,8 @@
+# *
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /admin/portfolio-editor
 
+# Sitemaps
 Sitemap: https://manishkandaridev-portfolio.vercel.app/sitemap.xml

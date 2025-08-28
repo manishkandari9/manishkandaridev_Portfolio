@@ -3,7 +3,7 @@ const path = require('path');
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://manishkandaridev-portfolio.vercel.app',
-  generateRobotsTxt: false,
+  generateRobotsTxt: true,
   sitemapSize: 5000,
   exclude: ['/admin', '/admin/**', '/admin/portfolio-editor'],
 
@@ -13,8 +13,8 @@ module.exports = {
     { loc: '/about', changefreq: 'weekly', priority: 0.7 },
   ],
 
-  // **Important:** specify output directory
-  outDir: path.resolve(__dirname, 'public'),
+  // ✅ Output directory set to root (project root)
+  outDir: path.resolve(__dirname), 
 
   robotsTxtOptions: {
     policies: [
