@@ -6,7 +6,9 @@ import AnimatedCursor from "@/components/animated-cursor"
 import { PortfolioProvider } from "@/context/portfolio-context"
 import SidebarChat from "@/components/SidebarChat"
 
-// Fonts
+// ==========================
+// Fonts Setup
+// ==========================
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -19,18 +21,50 @@ const firaCode = Fira_Code({
   display: "swap",
 })
 
+// ==========================
+// Metadata (Updated for manishkandari.dev)
+// ==========================
 export const metadata = {
   title: "Manish Kandari - CS Student & Freelance Developer",
-  description: "Personal portfolio of Manish Kandari, Computer Science student and freelance developer",
-  generator: "v0.dev",
-  verification: {
-    google: "DC9RwBYsHzEw_9rl17b4knQk1Iyi1UpIXP3fl9_39do",
-  },
+  description:
+    "Personal portfolio of Manish Kandari, a Computer Science student and freelance developer specializing in modern web technologies, backend systems, and UI/UX design.",
+  generator: "Next.js + Vercel",
   alternates: {
-    canonical: "https://manishkandaridev-portfolio.vercel.app/",
+    canonical: "https://manishkandari.dev/", // ✅ Updated to your custom domain
+  },
+  openGraph: {
+    title: "Manish Kandari - CS Student & Freelance Developer",
+    description:
+      "Explore the portfolio of Manish Kandari — Computer Science student, full-stack developer, and tech enthusiast.",
+    url: "https://manishkandari.dev/",
+    siteName: "Manish Kandari Portfolio",
+    images: [
+      {
+        url: "https://manishkandari.dev/og-image.jpg", // ✅ Replace with your actual OG image path
+        width: 1200,
+        height: 630,
+        alt: "Manish Kandari Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Manish Kandari - CS Student & Freelance Developer",
+    description:
+      "Explore the personal portfolio of Manish Kandari, a passionate CS student and developer.",
+    creator: "@manishkandari", // optional if you make a Twitter account
+    images: ["https://manishkandari.dev/og-image.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
 }
 
+// ==========================
+// Root Layout
+// ==========================
 interface RootLayoutProps {
   children: ReactNode
 }
