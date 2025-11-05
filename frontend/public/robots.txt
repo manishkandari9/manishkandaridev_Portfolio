@@ -1,14 +1,10 @@
-# *
+# Global rule
 User-agent: *
 Allow: /
 
-# *
-User-agent: *
+# Block sensitive routes
 Disallow: /admin
 Disallow: /private-endpoints
 
-# Host
-Host: https://manishkandari.dev
-
-# Sitemaps
+# Sitemap location
 Sitemap: https://manishkandari.dev/sitemap.xml
