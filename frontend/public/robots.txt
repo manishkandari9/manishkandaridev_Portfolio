@@ -1,9 +1,14 @@
+# *
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://manishkandaridev-portfolio.vercel.app/sitemap.xml
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /private-endpoints
 
-# Optional: Exclude private or development routes (if any)
-Disallow: /private/
-Disallow: /admin/
+# Host
+Host: https://manishkandari.dev
+
+# Sitemaps
+Sitemap: https://manishkandari.dev/sitemap.xml

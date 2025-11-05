@@ -50,7 +50,7 @@ export default function FeedbackDisplay() {
       const response = await axios.get("https://backend-cf0k.onrender.com/feedback")
       const mappedFeedback = response.data.map((item: any) => ({
         ...item,
-        id: item._id, // Map _id to id
+        id: item._id, // Map _id to id  
       }))
       const approvedFeedback = mappedFeedback.filter((item: FeedbackItem) => item.approved)
 
