@@ -22,28 +22,46 @@ const firaCode = Fira_Code({
 })
 
 // ==========================
-// Metadata (Updated for manishkandari.dev)
+// 🚀 Fully Optimized SEO Metadata
 // ==========================
 export const metadata = {
-  title: "Manish Kandari - CS Student & Freelance Developer",
+  title: "Freelance Web Developer & SEO Expert in India | Manish Kandari",
   description:
-    "Personal portfolio of Manish Kandari, a Computer Science student and freelance developer specializing in modern web technologies, backend systems, and UI/UX design.",
+    "Hire Manish Kandari — a freelance web developer and SEO expert from India. Specializing in responsive websites, React development, UI/UX design, e-commerce websites, and on-page & off-page SEO services.",
+  keywords: [
+    "freelance web developer India",
+    "freelance web designer near me",
+    "SEO expert in India",
+    "web development services India",
+    "website development company in India",
+    "web development company in Bangalore",
+    "website developer Delhi",
+    "web design services",
+    "off page SEO services",
+    "frontend freelance",
+    "ui ux design",
+    "responsive design",
+    "e-commerce websites",
+    "react developer",
+    "html css javascript",
+    "backend developer",
+  ],
   generator: "Next.js + Vercel",
   alternates: {
-    canonical: "https://manishkandari.dev/", // ✅ Updated to your custom domain
+    canonical: "https://manishkandari.dev/",
   },
   openGraph: {
-    title: "Manish Kandari - CS Student & Freelance Developer",
+    title: "Freelance Web Developer & SEO Expert — Manish Kandari",
     description:
-      "Explore the portfolio of Manish Kandari — Computer Science student, full-stack developer, and tech enthusiast.",
+      "Professional freelance web developer and SEO expert from India. Offering responsive websites, React apps, UI/UX design, and complete on-page & off-page SEO services for startups and businesses.",
     url: "https://manishkandari.dev/",
     siteName: "Manish Kandari Portfolio",
     images: [
       {
-        url: "https://manishkandari.dev/og-image.jpg", // ✅ Replace with your actual OG image path
+        url: "https://manishkandari.dev/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Manish Kandari Portfolio Preview",
+        alt: "Manish Kandari - Freelance Web Developer and SEO Expert Portfolio",
       },
     ],
     locale: "en_US",
@@ -51,19 +69,33 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manish Kandari - CS Student & Freelance Developer",
+    title: "Freelance Web Developer & SEO Expert — Manish Kandari",
     description:
-      "Explore the personal portfolio of Manish Kandari, a passionate CS student and developer.",
-    creator: "@manishkandari", // optional if you make a Twitter account
+      "Manish Kandari — freelance web developer and SEO expert from India specializing in React, responsive design, and web application development.",
+    creator: "@manishkandari",
     images: ["https://manishkandari.dev/og-image.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code", // (optional)
+  },
 }
 
 // ==========================
-// Root Layout
+// Root Layout (100% Optimized)
 // ==========================
 interface RootLayoutProps {
   children: ReactNode
@@ -72,7 +104,68 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${firaCode.variable} font-sans`}>
+      <head>
+        {/* ✅ Schema Markup (Google Knowledge Graph) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Manish Kandari",
+              jobTitle: "Freelance Web Developer & SEO Expert",
+              url: "https://manishkandari.dev",
+              image: "https://manishkandari.dev/og-image.jpg",
+              sameAs: [
+                "https://www.linkedin.com/in/manish-kandari-924907271/",
+                "https://github.com/manishkandari9",
+              ],
+              worksFor: {
+                "@type": "Organization",
+                name: "Manish Kandari Web Solutions",
+              },
+              knowsAbout: [
+                "Web Development",
+                "React",
+                "Node.js",
+                "MongoDB",
+                "UI/UX Design",
+                "SEO",
+                "Digital Marketing",
+              ],
+            }),
+          }}
+        />
+
+        {/* ✅ Image Schema (helps Google Image indexing) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ImageObject",
+              contentUrl: "https://manishkandari.dev/og-image.jpg",
+              creator: {
+                "@type": "Person",
+                name: "Manish Kandari",
+              },
+              creditText: "Manish Kandari Portfolio",
+              description:
+                "Freelance Web Developer and SEO Expert in India - Manish Kandari Portfolio Preview",
+              caption:
+                "Manish Kandari | Freelance Web Developer & SEO Expert in India",
+            }),
+          }}
+        />
+
+        {/* ✅ Sitemap & Robots Hint */}
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        <meta name="robots" content="index, follow" />
+      </head>
+
+      <body
+        className={`${inter.variable} ${firaCode.variable} font-sans bg-background text-foreground`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
