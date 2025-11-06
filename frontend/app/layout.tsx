@@ -51,9 +51,9 @@ export const metadata = {
     canonical: "https://manishkandari.dev/",
   },
   openGraph: {
-    title: "Freelance Web Developer & SEO Expert — Manish Kandari",
+    title: "Hire Freelance Web Developer & SEO Expert in India | Manish Kandari",
     description:
-      "Professional freelance web developer and SEO expert from India. Offering responsive websites, React apps, UI/UX design, and complete on-page & off-page SEO services for startups and businesses.",
+      "Hire Manish Kandari — a freelance web developer and SEO expert from India offering responsive websites, React applications, UI/UX design, and complete on-page & off-page SEO solutions.",
     url: "https://manishkandari.dev/",
     siteName: "Manish Kandari Portfolio",
     images: [
@@ -77,6 +77,7 @@ export const metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   robots: {
     index: true,
@@ -90,7 +91,7 @@ export const metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code", // (optional)
+    google: "your-google-verification-code", // optional
   },
 }
 
@@ -105,7 +106,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* ✅ Schema Markup (Google Knowledge Graph) */}
+        {/* ✅ Schema Markup for Person (Knowledge Graph) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -137,7 +138,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           }}
         />
 
-        {/* ✅ Image Schema (helps Google Image indexing) */}
+        {/* ✅ Image Schema (Rich Result + Copyright) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -151,14 +152,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
               },
               creditText: "Manish Kandari Portfolio",
               description:
-                "Freelance Web Developer and SEO Expert in India - Manish Kandari Portfolio Preview",
+                "Hire Manish Kandari — Freelance Web Developer and SEO Expert in India specializing in responsive web design, UI/UX development, and SEO-optimized websites.",
               caption:
                 "Manish Kandari | Freelance Web Developer & SEO Expert in India",
+              license: "https://creativecommons.org/licenses/by/4.0/",
+              copyrightNotice: "© 2025 Manish Kandari. All rights reserved.",
+              acquireLicensePage: "https://manishkandari.dev/",
             }),
           }}
         />
 
-        {/* ✅ Sitemap & Robots Hint */}
+        {/* ✅ Sitemap & Robots.txt */}
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
         <meta name="robots" content="index, follow" />
       </head>
