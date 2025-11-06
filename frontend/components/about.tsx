@@ -21,7 +21,7 @@ function Counter({ icon, value, label, duration = 2 }: CounterProps) {
   return (
     <motion.div
       ref={counterRef}
-      className="flex flex-col items-center p-4 bg-card/30 backdrop-blur-sm rounded-xl border border-border"
+      className="flex flex-col items-center p-4 bg-card/30 backdrop-blur-sm rounded-xl border border-border shadow-sm"
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
@@ -33,14 +33,7 @@ function Counter({ icon, value, label, duration = 2 }: CounterProps) {
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: duration }}
-        >
-          {value}
-        </motion.span>
-        +
+        {value}+
       </motion.div>
       <div className="text-muted-foreground text-sm">{label}</div>
     </motion.div>
@@ -52,7 +45,6 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
-  // Map icon strings to components
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
       case "Coffee":
@@ -67,52 +59,91 @@ export default function About() {
   }
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 relative">
-      <div className="container px-4 md:px-6">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="py-20 bg-background text-foreground relative overflow-hidden"
+    >
+      <div className="container px-4 md:px-8 lg:px-12">
+        {/* ✅ Title Section */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{about.title}</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
+          <h2 className="text-4xl font-bold mb-4 tracking-tight">About Me</h2>
+          <p className="text-gray-400 max-w-3xl mx-auto text-lg">
+            <strong>Freelance Web Developer</strong> &{" "}
+            <strong>SEO Expert in India</strong> — crafting{" "}
+            <em>responsive websites, UI/UX designs</em>, and{" "}
+            <strong>high-performance web applications</strong> optimized for
+            both users and search engines.
+          </p>
+          <div className="w-20 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        {/* ✅ Main Grid */}
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* 🖼️ Left Side Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -80 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative"
+            transition={{ duration: 0.8 }}
+            className="relative flex justify-center"
           >
-            <div className="relative h-[400px] w-full overflow-hidden rounded-xl">
+            <div className="relative group">
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-primary/40 to-purple-500/20 blur-2xl opacity-40 group-hover:opacity-60 transition duration-500"></div>
+
               <Image
                 src={about.image || "/my.jpg"}
-                alt={about.title}
-                width={400}
-                height={400}
-                className="object-cover"
-                priority
+                alt="Freelance Web Developer and SEO Expert in India"
+                width={450}
+                height={450}
+                className="rounded-2xl shadow-2xl object-cover object-center relative z-10 transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 h-40 w-40 bg-primary/10 rounded-xl border border-primary"></div>
           </motion.div>
 
+          {/* 🧠 Right Side Text */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 80 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-bold">Hi, I'm {about.title}</h3>
-            {about.description.map((paragraph, index) => (
-              <p key={index} className="text-muted-foreground">
-                {paragraph}
-              </p>
-            ))}
+            <h3 className="text-2xl font-semibold">
+              Hi, I'm <span className="text-primary">Manish Kandari</span>
+            </h3>
 
-            <div className="grid grid-cols-3 gap-4 pt-4">
+            <p className="text-muted-foreground leading-relaxed text-base">
+              I’m a <strong>freelance web developer</strong> and{" "}
+              <strong>SEO expert from India</strong> specializing in{" "}
+              <em>responsive design, UI/UX, and full-stack development</em> using{" "}
+              <strong>React, Next.js, Node.js,</strong> and{" "}
+              <strong>MongoDB</strong>. I create visually engaging, fast-loading
+              websites that rank high on Google.
+            </p>
+
+            <p className="text-muted-foreground leading-relaxed text-base">
+              My expertise includes <strong>on-page SEO</strong>,{" "}
+              <strong>off-page SEO services</strong>,{" "}
+              <strong>web application development</strong>, and{" "}
+              <strong>e-commerce website design</strong>. I help brands achieve
+              digital success through scalable, SEO-friendly web solutions.
+            </p>
+
+            <p className="text-muted-foreground leading-relaxed text-base">
+              Whether you’re searching for a{" "}
+              <strong>freelance web designer near you</strong> or need{" "}
+              <strong>web development services in India</strong>, I deliver
+              performance-driven solutions to boost your online presence.
+            </p>
+
+            {/* ✅ Counter Section */}
+            <div className="grid grid-cols-3 gap-4 pt-6">
               {about.counters.map((counter) => (
                 <Counter
                   key={counter.id}
@@ -121,6 +152,23 @@ export default function About() {
                   label={counter.label}
                 />
               ))}
+            </div>
+
+            {/* ✅ CTA - “Let’s Collaborate” */}
+            <div className="pt-8 flex justify-start md:justify-start">
+              <motion.a
+                href="#contact"
+                className="relative inline-flex items-center justify-center px-8 py-3 text-lg font-semibold 
+                text-white rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 
+                hover:from-blue-600 hover:via-purple-600 hover:to-indigo-600 
+                transition-all duration-300 shadow-lg hover:shadow-indigo-500/40 
+                group overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+                Let’s Collaborate
+              </motion.a>
             </div>
           </motion.div>
         </div>
