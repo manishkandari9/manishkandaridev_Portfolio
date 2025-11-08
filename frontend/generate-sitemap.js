@@ -9,6 +9,7 @@ const pages = [
   'skills',
   'services',
   'projects',
+  'feedback',
   'contact',
 ];
 
@@ -26,5 +27,13 @@ ${pages
   .join('')}
 </urlset>`;
 
-fs.writeFileSync(path.join(__dirname, 'public', 'sitemap.xml'), xml);
+const sitemapPath = path.join(__dirname, 'public', 'sitemap.xml');
+
+// ✅ Ensure public folder exists
+if (!fs.existsSync(path.join(__dirname, 'public'))) {
+  fs.mkdirSync(path.join(__dirname, 'public'));
+}
+
+// ✅ Write sitemap
+fs.writeFileSync(sitemapPath, xml);
 console.log('✅ Sitemap generated successfully at public/sitemap.xml');

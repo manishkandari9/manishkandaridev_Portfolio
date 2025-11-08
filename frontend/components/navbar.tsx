@@ -37,12 +37,13 @@ export default function Navbar() {
 
   // ✅ SEO-friendly internal navigation structure
   const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
-    { href: "#services", label: "Services" },
-    { href: "#feedback-display", label: "Feedback" },
-    { href: "#contact", label: "Contact" },
+    { href: "about", label: "About" },
+    { href: "skills", label: "Skills" },
+    { href: "projects", label: "Projects" },
+    { href: "services", label: "Services" },
+    { href: "feedback", label: "Feedback" },
+    { href: "contact", label: "Contact" },
+    
   ]
 
   // ✅ External social links (with SEO-safe nofollow)
