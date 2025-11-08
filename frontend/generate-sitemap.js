@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const baseUrl = 'https://manishkandari.dev';
+// ✅ Use the live domain with 'www'
+const baseUrl = 'https://www.manishkandari.dev';
 
 const pages = [
   '', // home
@@ -29,7 +30,7 @@ ${pages
 
 const sitemapPath = path.join(__dirname, 'public', 'sitemap.xml');
 
-// ✅ Ensure public folder exists
+// ✅ Ensure 'public' folder exists
 if (!fs.existsSync(path.join(__dirname, 'public'))) {
   fs.mkdirSync(path.join(__dirname, 'public'));
 }

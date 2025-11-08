@@ -122,7 +122,7 @@ export default function Hero() {
           repeatType: "reverse",
         }}
       >
-        <Link href="#About" scroll={false} aria-label="Scroll to About Section">
+        <Link href="about" scroll={false} aria-label="Scroll to About Section">
           <ChevronDown className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary animate-bounce" />
         </Link>
       </motion.div>

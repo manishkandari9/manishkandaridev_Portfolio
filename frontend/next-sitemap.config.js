@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://manishkandari.dev',
+  siteUrl: 'https://www.manishkandari.dev', // ✅ www version use karo
   generateRobotsTxt: true,
   outDir: 'public',
   changefreq: 'weekly',

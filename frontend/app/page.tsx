@@ -19,7 +19,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
-      <Services />
+      <Services />  
       <FeedbackDisplay />
       <FeedbackForm />
       <Contact />

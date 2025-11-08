@@ -8,7 +8,6 @@ import SidebarChat from "@/components/SidebarChat"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 
-
 // ==========================
 // Fonts Setup
 // ==========================
@@ -51,17 +50,17 @@ export const metadata = {
   ],
   generator: "Next.js + Vercel",
   alternates: {
-    canonical: "https://manishkandari.dev/",
+    canonical: "https://www.manishkandari.dev/",
   },
   openGraph: {
     title: "Hire Freelance Web Developer & SEO Expert in India | Manish Kandari",
     description:
       "Hire Manish Kandari — a freelance web developer and SEO expert from India offering responsive websites, React applications, UI/UX design, and complete on-page & off-page SEO solutions.",
-    url: "https://manishkandari.dev/",
+    url: "https://www.manishkandari.dev/",
     siteName: "Manish Kandari Portfolio",
     images: [
       {
-        url: "https://manishkandari.dev/og-image.jpg",
+        url: "https://www.manishkandari.dev/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Manish Kandari - Freelance Web Developer and SEO Expert Portfolio",
@@ -76,7 +75,7 @@ export const metadata = {
     description:
       "Manish Kandari — freelance web developer and SEO expert from India specializing in React, responsive design, and web application development.",
     creator: "@manishkandari",
-    images: ["https://manishkandari.dev/og-image.jpg"],
+    images: ["https://www.manishkandari.dev/og-image.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
@@ -109,6 +108,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* ✅ Author and Theme Color Meta Tags */}
+        <meta name="author" content="Manish Kandari" />
+        <meta name="theme-color" content="#0a0a0a" />
+
         {/* ✅ Schema Markup for Person (Knowledge Graph) */}
         <script
           type="application/ld+json"
@@ -118,8 +121,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
               "@type": "Person",
               name: "Manish Kandari",
               jobTitle: "Freelance Web Developer & SEO Expert",
-              url: "https://manishkandari.dev",
-              image: "https://manishkandari.dev/og-image.jpg",
+              url: "https://www.manishkandari.dev",
+              image: "https://www.manishkandari.dev/og-image.jpg",
               sameAs: [
                 "https://www.linkedin.com/in/manish-kandari-924907271/",
                 "https://github.com/manishkandari9",
@@ -148,7 +151,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ImageObject",
-              contentUrl: "https://manishkandari.dev/og-image.jpg",
+              contentUrl: "https://www.manishkandari.dev/og-image.jpg",
               creator: {
                 "@type": "Person",
                 name: "Manish Kandari",
@@ -160,13 +163,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 "Manish Kandari | Freelance Web Developer & SEO Expert in India",
               license: "https://creativecommons.org/licenses/by/4.0/",
               copyrightNotice: "© 2025 Manish Kandari. All rights reserved.",
-              acquireLicensePage: "https://manishkandari.dev/",
+              acquireLicensePage: "https://www.manishkandari.dev/",
             }),
           }}
         />
 
         {/* ✅ Sitemap & Robots.txt */}
-        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        <link
+          rel="sitemap"
+          type="application/xml"
+          href="https://www.manishkandari.dev/sitemap.xml"
+        />
         <meta name="robots" content="index, follow" />
       </head>
 
@@ -186,8 +193,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </PortfolioProvider>
         </ThemeProvider>
         <Analytics />
-<SpeedInsights />
-
+        <SpeedInsights />
       </body>
     </html>
   )
