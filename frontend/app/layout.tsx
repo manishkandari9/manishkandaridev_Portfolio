@@ -5,8 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import AnimatedCursor from "@/components/animated-cursor"
 import { PortfolioProvider } from "@/context/portfolio-context"
 import SidebarChat from "@/components/SidebarChat"
-import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 
 // ==========================
