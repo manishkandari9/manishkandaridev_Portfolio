@@ -206,6 +206,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 "Manish Kandari | Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India",
               license: "https://creativecommons.org/licenses/by/4.0/",
               copyrightNotice: "© 2025 Manish Kandari. All rights reserved.",
+               acquireLicensePage: "https://www.manishkandari.dev/license", // ✅ Add this line
             }),
           }}
         />
