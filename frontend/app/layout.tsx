@@ -25,9 +25,11 @@ const firaCode = Fira_Code({
 // ==========================
 export const metadata = {
   title:
-    "Freelance Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India | AI Agents & Web Apps - Manish Kandari",
+  "Freelance Full Stack Developer & Automation Expert in India | Manish Kandari",
+    // "Freelance Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India | AI Agents & Web Apps - Manish Kandari",
   description:
-    "Hire Manish Kandari — a freelance full stack developer and automation expert based in Rishikesh, Dehradun, India. I build modern web apps, AI agents, and n8n workflow automations for startups and global businesses.",
+   "Hire Manish Kandari — a freelance full stack developer & automation expert from Rishikesh, India. Building modern AI-powered web apps for startups & brands.",
+
   keywords: [
     "freelance full stack developer",
     "automation expert",
