@@ -11,7 +11,6 @@ export const metadata = {
   description:
     "Hire Manish Kandari — a freelance full stack web developer and SEO expert in India. Offering AI-powered web development, automation workflows, React and Next.js services, responsive UI/UX design, and SEO optimization for startups and businesses.",
   keywords: [
-    // 🌍 High-Volume + Intent-Driven Keywords
     "AI web development services",
     "full stack developer India",
     "hire web developer India",
@@ -100,22 +99,31 @@ export default function ServicesPage() {
           I offer{" "}
           <strong>AI-powered web development</strong>,{" "}
           <strong>automation workflow solutions</strong>, and{" "}
-          <strong>SEO-driven websites</strong> designed to grow your brand.  
+          <strong>SEO-driven websites</strong> designed to grow your brand.{" "}
           Whether you need a{" "}
-          <a href="/projects" className="text-primary hover:underline font-medium">
+          <a
+            href="/projects"
+            className="text-primary hover:underline font-medium"
+          >
             full stack project
           </a>
           ,{" "}
-          <a href="/contact" className="text-primary hover:underline font-medium">
+          <a
+            href="/contact"
+            className="text-primary hover:underline font-medium"
+          >
             a custom web app
           </a>
           , or{" "}
-          <a href="/about" className="text-primary hover:underline font-medium">
+          <a
+            href="/about"
+            className="text-primary hover:underline font-medium"
+          >
             consultation with a freelance developer
           </a>
           , I help businesses in{" "}
-          <strong>Rishikesh, Dehradun, and across India</strong> scale faster with
-          technology and design that perform.
+          <strong>Rishikesh, Dehradun, and across India</strong> scale faster
+          with technology and design that perform.
         </p>
       </section>
 
@@ -179,6 +187,31 @@ export default function ServicesPage() {
                 },
               ],
             },
+          }),
+        }}
+      />
+
+      {/* ✅ BreadcrumbList Schema (Fixes GSC Warning) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.manishkandari.dev/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Services",
+                item: "https://www.manishkandari.dev/services",
+              },
+            ],
           }),
         }}
       />

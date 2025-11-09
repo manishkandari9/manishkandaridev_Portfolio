@@ -65,7 +65,7 @@ export const metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code", // 🔹 Replace with your actual Search Console verification code
+    google: "your-google-verification-code", // Replace with actual Search Console code
   },
 }
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
       <About />
       <Footer />
 
-      {/* ✅ Google Knowledge Graph Schema (Structured Data) */}
+      {/* ✅ Google Knowledge Graph Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -117,6 +117,31 @@ export default function AboutPage() {
               "Frontend Development",
               "Backend Development",
               "UI/UX Design",
+            ],
+          }),
+        }}
+      />
+
+      {/* ✅ BreadcrumbList Schema (Fixes “No Breadcrumb Found” Warning) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.manishkandari.dev/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "About",
+                item: "https://www.manishkandari.dev/about",
+              },
             ],
           }),
         }}

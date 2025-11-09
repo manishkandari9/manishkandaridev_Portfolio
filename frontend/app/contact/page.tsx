@@ -11,7 +11,6 @@ export const metadata = {
   description:
     "Contact Manish Kandari — a freelance full stack web developer, automation expert, and SEO specialist based in Rishikesh, Dehradun (India). Expert in React, Next.js, UI/UX design, and modern web development services for startups and businesses.",
   keywords: [
-    // 🔹 Core SEO Keywords
     "Manish Kandari",
     "freelance full stack developer India",
     "web developer Rishikesh",
@@ -34,7 +33,6 @@ export const metadata = {
     "hire freelance web developer",
     "contact freelance developer",
     "hire web developer in India",
-    // 🔹 Support Keywords
     "web design Rishikesh",
     "web development Dehradun",
     "SEO and web design services",
@@ -83,7 +81,7 @@ export const metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code", // ✅ Replace with your real GSC verification ID
+    google: "your-google-verification-code", // Replace with real GSC verification ID
   },
 }
 
@@ -103,17 +101,11 @@ export default function ContactPage() {
         </h2>
         <p className="max-w-2xl mx-auto text-muted-foreground text-sm sm:text-base leading-relaxed">
           Have a project idea or want to collaborate with{" "}
-          <a
-            href="/about"
-            className="text-primary hover:underline font-medium"
-          >
+          <a href="/about" className="text-primary hover:underline font-medium">
             Manish Kandari
           </a>{" "}
           — a{" "}
-          <a
-            href="/"
-            className="text-primary hover:underline font-medium"
-          >
+          <a href="/" className="text-primary hover:underline font-medium">
             freelance full stack web developer
           </a>{" "}
           and{" "}
@@ -123,8 +115,7 @@ export default function ContactPage() {
           >
             automation expert
           </a>{" "}
-          from{" "}
-          <strong>Rishikesh, Dehradun (India)</strong>? Explore{" "}
+          from <strong>Rishikesh, Dehradun (India)</strong>? Explore{" "}
           <a
             href="/projects"
             className="text-primary hover:underline font-medium"
@@ -176,6 +167,31 @@ export default function ContactPage() {
                 "https://www.manishkandari.dev",
               ],
             },
+          }),
+        }}
+      />
+
+      {/* ✅ BreadcrumbList Schema (Fixes GSC Warning) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.manishkandari.dev/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Contact",
+                item: "https://www.manishkandari.dev/contact",
+              },
+            ],
           }),
         }}
       />

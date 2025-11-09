@@ -11,7 +11,6 @@ export const metadata = {
   description:
     "Discover portfolio projects by Manish Kandari — a top-rated freelance full stack and AI web developer in India. Expert in React, Next.js, Node.js, MongoDB, and modern responsive web development. Explore real-world apps, SEO-optimized websites, and automation solutions.",
   keywords: [
-    // 🌍 High Volume + Relevant Keywords
     "freelance web developer India",
     "full stack developer portfolio",
     "AI web development projects",
@@ -84,7 +83,7 @@ export const metadata = {
 }
 
 // ======================================================
-// 🚀 Projects Page with Internal SEO Link Section
+// 🚀 Projects Page (SEO + BreadcrumbList Schema)
 // ======================================================
 export default function ProjectsPage() {
   return (
@@ -92,7 +91,7 @@ export default function ProjectsPage() {
       <Navbar />
       <Projects />
 
-      {/* ✅ Internal SEO Section for Crawling + Keyword Boost */}
+      {/* ✅ Internal SEO Section */}
       <section className="py-16 text-center bg-muted/20">
         <h2 className="text-xl font-semibold text-primary mb-2">
           Explore My Full Stack Web Development Projects
@@ -117,7 +116,7 @@ export default function ProjectsPage() {
 
       <Footer />
 
-      {/* ✅ JSON-LD Structured Data (Portfolio Schema) */}
+      {/* ✅ JSON-LD: Portfolio Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -159,6 +158,31 @@ export default function ProjectsPage() {
                 description:
                   "SEO-optimized e-commerce website developed with Next.js and integrated with Stripe payment gateway.",
                 programmingLanguage: ["Next.js", "MongoDB", "CSS"],
+              },
+            ],
+          }),
+        }}
+      />
+
+      {/* ✅ JSON-LD: BreadcrumbList Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.manishkandari.dev/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Projects",
+                item: "https://www.manishkandari.dev/projects",
               },
             ],
           }),

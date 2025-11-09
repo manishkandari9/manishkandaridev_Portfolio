@@ -12,7 +12,6 @@ export const metadata = {
   description:
     "Read client feedback and testimonials for Manish Kandari — a top-rated freelance web developer and SEO expert in India. Trusted for React, Next.js, and full-stack web development projects that deliver performance, design, and SEO results.",
   keywords: [
-    // 🏆 High Search Volume + Semantic Rich Keywords
     "freelance web developer India",
     "best web developer in India",
     "React developer",
@@ -177,6 +176,31 @@ export default function FeedbackPage() {
                   ratingValue: "5",
                   bestRating: "5",
                 },
+              },
+            ],
+          }),
+        }}
+      />
+
+      {/* ✅ BreadcrumbList Schema (Fixes “No Breadcrumb Found” Warning) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.manishkandari.dev/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Feedback",
+                item: "https://www.manishkandari.dev/feedback",
               },
             ],
           }),
