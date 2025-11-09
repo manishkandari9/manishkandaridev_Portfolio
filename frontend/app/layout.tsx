@@ -201,12 +201,44 @@ export default function RootLayout({ children }: RootLayoutProps) {
               creator: { "@type": "Person", name: "Manish Kandari" },
               creditText: "Manish Kandari Web Solutions",
               description:
-                "Hire Manish Kandari — Freelance Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India. Specialized in AI automation & web app development.",
+                "Hire Manish Kandari — Freelance Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India.",
               caption:
                 "Manish Kandari | Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India",
               license: "https://creativecommons.org/licenses/by/4.0/",
               copyrightNotice: "© 2025 Manish Kandari. All rights reserved.",
             }),
+          }}
+        />
+
+        {/* ✅ Breadcrumb Schema Added */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://www.manishkandari.dev/",
+                },
+              ],
+            }),
+          }}
+        />
+
+        {/* ✅ Google Analytics (GA4) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
           }}
         />
 
