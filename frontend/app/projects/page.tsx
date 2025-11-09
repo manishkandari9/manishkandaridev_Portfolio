@@ -2,57 +2,52 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Projects from "@/components/projects"
 
+// ======================================================
+// 🧠 SEO Optimized Metadata (AI + Portfolio + Developer Keywords)
+// ======================================================
 export const metadata = {
-  title: "Projects | Freelance Web Developer & SEO Expert in India - Manish Kandari",
+  title:
+    "Projects | Full Stack & AI Web Development Portfolio - Manish Kandari | Freelance Developer in India",
   description:
-    "Explore the projects by Manish Kandari — a freelance web designer and web developer near you in India. Expert in responsive web design, React, Next.js, UI/UX, and SEO-optimized web applications including e-commerce websites and full-stack projects.",
+    "Discover portfolio projects by Manish Kandari — a top-rated freelance full stack and AI web developer in India. Expert in React, Next.js, Node.js, MongoDB, and modern responsive web development. Explore real-world apps, SEO-optimized websites, and automation solutions.",
   keywords: [
-    // 🔹 Primary Keywords
-    "freelance web designer near me",
-    "freelance web developer near me",
-    "freelance developer",
-    "web developer freelance",
-    "web developer",
-    "responsive design",
-    "web design",
-    "page design",
-    "freelance website",
-    "creating websites",
-    "web application development",
-    "e commerce websites",
-    "user flow",
-    "web development projects",
-    "ui ux design",
-    "ui ux",
-    "freelance react developer",
-    "js react",
-    "backend developer",
-    "websites developer",
-    "ui and ux design",
-    "html css javascript",
-    "web design websites",
-    // 🔹 SEO / Location Based
-    "seo expert in india",
-    "web development services india",
-    "website development company in india",
-    "web development company in bangalore",
-    "website developer delhi",
-    "web design services",
-    "web design services",
-    // 🔹 Secondary Keywords
-    "off page seo services",
-    "off page seo",
-    "frontend freelance",
-    "on page seo and off page seo",
-    "on and off page seo"
+    // 🌍 High Volume + Relevant Keywords
+    "freelance web developer India",
+    "full stack developer portfolio",
+    "AI web development projects",
+    "React developer projects",
+    "Next.js portfolio",
+    "Node.js developer projects",
+    "best freelance web developer",
+    "frontend and backend developer",
+    "modern web design projects",
+    "custom website development",
+    "responsive web applications",
+    "hire web developer India",
+    "SEO optimized web projects",
+    "web development case studies",
+    "ecommerce website development",
+    "real world web apps",
+    "UI UX design portfolio",
+    "automation web apps",
+    "Rishikesh web developer",
+    "Dehradun web developer",
+    "top freelance web developer in India",
+    "professional portfolio websites",
+    "freelance developer React Node",
+    "AI project development India",
+    "next js web developer",
+    "web design company India",
+    "website development agency",
   ],
   alternates: {
     canonical: "https://www.manishkandari.dev/projects",
   },
   openGraph: {
-    title: "Projects | Manish Kandari - Freelance Web Developer & SEO Expert in India",
+    title:
+      "Projects | Full Stack & AI Web Developer Portfolio - Manish Kandari (India)",
     description:
-      "View the portfolio projects of Manish Kandari — freelance web developer and SEO expert from India. Specializing in React, Next.js, UI/UX, and SEO-optimized modern web applications.",
+      "Explore professional web development and AI automation projects by freelance full stack developer Manish Kandari from India. Building responsive websites with React, Next.js, and Node.js.",
     url: "https://www.manishkandari.dev/projects",
     siteName: "Manish Kandari Portfolio",
     images: [
@@ -60,7 +55,7 @@ export const metadata = {
         url: "https://www.manishkandari.dev/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Manish Kandari - Freelance Web Developer Portfolio Projects",
+        alt: "Manish Kandari - Full Stack & AI Web Developer Portfolio",
       },
     ],
     locale: "en_IN",
@@ -68,20 +63,107 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects | Freelance Web Developer & SEO Expert in India",
+    title:
+      "Projects | Full Stack & AI Web Development Portfolio - Manish Kandari",
     description:
-      "Explore the best portfolio projects by Manish Kandari — freelance web developer and SEO expert from India specializing in React, Next.js, and modern web design.",
+      "Discover real-world AI and web development projects by freelance developer Manish Kandari — React, Next.js, Node.js, and SEO-friendly design.",
     creator: "@manishkandari",
     images: ["https://www.manishkandari.dev/og-image.jpg"],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 }
 
+// ======================================================
+// 🚀 Projects Page with Internal SEO Link Section
+// ======================================================
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground relative overflow-hidden">
       <Navbar />
       <Projects />
+
+      {/* ✅ Internal SEO Section for Crawling + Keyword Boost */}
+      <section className="py-16 text-center bg-muted/20">
+        <h2 className="text-xl font-semibold text-primary mb-2">
+          Explore My Full Stack Web Development Projects
+        </h2>
+        <p className="max-w-2xl mx-auto text-muted-foreground text-sm sm:text-base leading-relaxed">
+          Browse real-world{" "}
+          <strong>React, Next.js, and AI-based web applications</strong> built
+          for businesses and startups in{" "}
+          <strong>Rishikesh, Dehradun, and across India</strong>. Want to
+          collaborate?{" "}
+          <a href="/contact" className="text-primary hover:underline font-medium">
+            Contact me
+          </a>{" "}
+          or check my{" "}
+          <a href="/services" className="text-primary hover:underline font-medium">
+            web development services
+          </a>{" "}
+          to start your next{" "}
+          <strong>SEO-optimized, fast-loading digital project</strong>.
+        </p>
+      </section>
+
       <Footer />
+
+      {/* ✅ JSON-LD Structured Data (Portfolio Schema) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Portfolio",
+            name: "Web Development Projects - Manish Kandari",
+            description:
+              "Portfolio of freelance web developer and SEO expert Manish Kandari from India. Featuring React, Next.js, and AI-based web development projects.",
+            url: "https://www.manishkandari.dev/projects",
+            creator: {
+              "@type": "Person",
+              name: "Manish Kandari",
+              jobTitle: "Full Stack Web Developer & SEO Expert",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Rishikesh",
+                addressRegion: "Dehradun",
+                addressCountry: "India",
+              },
+              sameAs: [
+                "https://github.com/manishkandari9",
+                "https://www.linkedin.com/in/manish-kandari-924907271/",
+                "https://www.instagram.com/manishkandari09/",
+                "https://www.manishkandari.dev",
+              ],
+            },
+            hasPart: [
+              {
+                "@type": "CreativeWork",
+                name: "AI Automation Dashboard",
+                description:
+                  "A web app that automates workflow management using AI and backend logic built in Node.js and React.",
+                programmingLanguage: ["JavaScript", "Node.js", "React"],
+              },
+              {
+                "@type": "CreativeWork",
+                name: "E-commerce Storefront",
+                description:
+                  "SEO-optimized e-commerce website developed with Next.js and integrated with Stripe payment gateway.",
+                programmingLanguage: ["Next.js", "MongoDB", "CSS"],
+              },
+            ],
+          }),
+        }}
+      />
     </main>
   )
 }

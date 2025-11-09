@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -37,11 +36,11 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       onClick={onClick}
       whileHover={{ y: -10 }}
     >
-      <div className="overflow-hidden rounded-xl bg-card/30 backdrop-blur-sm border border-border h-full flex flex-col">
+      <div className="overflow-hidden rounded-xl bg-card/30 backdrop-blur-sm border border-border h-full flex flex-col shadow-md hover:shadow-lg transition-shadow duration-300">
         <div className="relative h-48 overflow-hidden">
           <Image
             src={project.image || "/placeholder.svg"}
-            alt={project.title}
+            alt={`${project.title} - project by Manish Kandari, freelance web developer`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
             priority
@@ -56,7 +55,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           <Badge className="self-start mb-2" variant="outline">
             {project.category}
           </Badge>
-          <h3 className="text-lg font-bold mb-2">{project.title}</h3>
+          <h3 className="text-lg font-bold mb-2 text-foreground">{project.title}</h3>
           <p className="text-muted-foreground text-sm mb-4 flex-1">{project.description}</p>
           <div className="flex flex-wrap gap-2">
             {project.technologies.slice(0, 3).map((tech) => (
@@ -92,7 +91,7 @@ function ProjectModal({ project, isOpen, onClose }: { project: Project | null; i
         <div className="relative h-48 md:h-64 overflow-hidden rounded-lg">
           <Image
             src={project.image || "/placeholder.svg"}
-            alt={project.title}
+            alt={`${project.title} preview - built by Manish Kandari`}
             fill
             className="object-cover"
           />
@@ -167,7 +166,6 @@ export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  // Fetch projects from Node.js backend
   useEffect(() => {
     async function fetchProjects() {
       try {
@@ -186,7 +184,6 @@ export default function Projects() {
           challenge: item.challenge || "No challenge provided",
           solution: item.solution || "No solution provided",
         }));
-        console.log("Fetched projects:", mappedData); // Debug log
         setProjects(mappedData);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -204,12 +201,10 @@ export default function Projects() {
     setIsModalOpen(true);
   };
 
-  const closeProjectModal = () => {
-    setIsModalOpen(false);
-  };
+  const closeProjectModal = () => setIsModalOpen(false);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20">
+    <section id="projects" ref={sectionRef} className="py-20 bg-muted/30">
       <div className="container px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -220,8 +215,7 @@ export default function Projects() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Here are some of the projects I've worked on. Each one presented unique challenges and opportunities to
-            learn and grow as a developer.
+            Explore my web, backend, and UI/UX projects showcasing full-stack development, automation, and AI integration skills.
           </p>
         </motion.div>
 
@@ -247,9 +241,7 @@ export default function Projects() {
         {isLoading ? (
           <div className="text-center text-muted-foreground">Loading projects...</div>
         ) : filteredProjects.length === 0 ? (
-          <div className="text-center text-muted-foreground">
-            No projects found for this category.
-          </div>
+          <div className="text-center text-muted-foreground">No projects found for this category.</div>
         ) : (
           <AnimatePresence mode="wait">
             <motion.div
@@ -263,12 +255,39 @@ export default function Projects() {
               {filteredProjects.map((project) => (
                 <ProjectCard key={project._id} project={project} onClick={() => openProjectModal(project)} />
               ))}
-            </motion.div >
+            </motion.div>
           </AnimatePresence>
         )}
 
         <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeProjectModal} />
       </div>
+
+      {/* ✅ SEO JSON-LD for Projects */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Manish Kandari Portfolio Projects",
+            description:
+              "Explore projects by Manish Kandari — freelance full stack developer from India specializing in React, Next.js, Node.js, Golang, and n8n automation.",
+            itemListElement: projects.map((p, index) => ({
+              "@type": "CreativeWork",
+              position: index + 1,
+              name: p.title,
+              description: p.description,
+              url: p.liveLink || "https://www.manishkandari.dev/projects",
+              image: p.image,
+              author: {
+                "@type": "Person",
+                name: "Manish Kandari",
+                jobTitle: "Freelance Full Stack Developer & Automation Expert",
+              },
+            })),
+          }),
+        }}
+      />
     </section>
   );
 }

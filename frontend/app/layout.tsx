@@ -8,9 +8,6 @@ import SidebarChat from "@/components/SidebarChat"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 
-// ==========================
-// Fonts Setup
-// ==========================
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -24,62 +21,76 @@ const firaCode = Fira_Code({
 })
 
 // ==========================
-// 🚀 Fully Optimized SEO Metadata
+// 🌍 Fully Optimized Metadata
 // ==========================
 export const metadata = {
-  title: "Freelance Web Developer & SEO Expert in India | Manish Kandari",
+  title:
+    "Freelance Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India | AI Agents & Web Apps - Manish Kandari",
   description:
-    "Hire Manish Kandari — a freelance web developer and SEO expert from India. Specializing in responsive websites, React development, UI/UX design, e-commerce websites, and on-page & off-page SEO services.",
+    "Hire Manish Kandari — a freelance full stack developer and automation expert based in Rishikesh, Dehradun, India. I build modern web apps, AI agents, and n8n workflow automations for startups and global businesses.",
   keywords: [
-    "freelance web developer India",
-    "freelance web designer near me",
-    "SEO expert in India",
-    "web development services India",
-    "website development company in India",
-    "web development company in Bangalore",
-    "website developer Delhi",
-    "web design services",
-    "off page SEO services",
-    "frontend freelance",
-    "ui ux design",
-    "responsive design",
-    "e-commerce websites",
-    "react developer",
-    "html css javascript",
-    "backend developer",
+    "freelance full stack developer",
+    "automation expert",
+    "AI agent developer",
+    "n8n workflow developer",
+    "web app developer",
+    "freelance web developer",
+    "React Node.js developer",
+    "Python automation developer",
+    "business workflow automation",
+    "AI automation services",
+    "remote full stack developer",
+    "software developer for startups",
+    "full stack developer in Rishikesh",
+    "full stack developer in Dehradun",
+    "automation expert in Rishikesh",
+    "automation expert in Dehradun",
+    "AI developer in Rishikesh",
+    "AI developer in Dehradun",
+    "web development company Rishikesh",
+    "web development company Dehradun",
+    "software developer in India",
+    "website developer Rishikesh",
+    "website developer Dehradun",
   ],
   generator: "Next.js + Vercel",
   alternates: {
     canonical: "https://www.manishkandari.dev/",
   },
   openGraph: {
-    title: "Hire Freelance Web Developer & SEO Expert in India | Manish Kandari",
+    title:
+      "Hire Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India - Manish Kandari",
     description:
-      "Hire Manish Kandari — a freelance web developer and SEO expert from India offering responsive websites, React applications, UI/UX design, and complete on-page & off-page SEO solutions.",
+      "Manish Kandari — freelance full stack developer and automation expert offering AI agents, web apps, and n8n workflow automation for global clients.",
     url: "https://www.manishkandari.dev/",
-    siteName: "Manish Kandari Portfolio",
+    siteName: "Manish Kandari Web Solutions",
     images: [
       {
         url: "https://www.manishkandari.dev/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Manish Kandari - Freelance Web Developer and SEO Expert Portfolio",
+        alt: "Manish Kandari - Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Freelance Web Developer & SEO Expert — Manish Kandari",
+    title:
+      "Freelance Full Stack Developer & Automation Expert - Manish Kandari",
     description:
-      "Manish Kandari — freelance web developer and SEO expert from India specializing in React, responsive design, and web application development.",
+      "Hire Manish Kandari — freelance full stack developer & automation expert from Rishikesh, Dehradun, India. Specialized in React, Node.js, AI agents & workflow automation.",
     creator: "@manishkandari",
     images: ["https://www.manishkandari.dev/og-image.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
+    other: [
+      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
+      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
+    ],
   },
   robots: {
     index: true,
@@ -92,13 +103,10 @@ export const metadata = {
       "max-video-preview": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code", // optional
-  },
 }
 
 // ==========================
-// Root Layout (100% Optimized)
+// Root Layout
 // ==========================
 interface RootLayoutProps {
   children: ReactNode
@@ -108,11 +116,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* ✅ Author and Theme Color Meta Tags */}
         <meta name="author" content="Manish Kandari" />
         <meta name="theme-color" content="#0a0a0a" />
+        <meta name="color-scheme" content="dark light" />
 
-        {/* ✅ Schema Markup for Person (Knowledge Graph) */}
+        {/* 🌐 Geo & Local SEO Tags */}
+        <meta name="geo.region" content="IN-UT" />
+        <meta name="geo.placename" content="Rishikesh, Dehradun, India" />
+        <meta name="geo.position" content="30.0869;78.2676" />
+        <meta name="ICBM" content="30.0869, 78.2676" />
+
+        {/* ✅ Person Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -120,7 +134,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Manish Kandari",
-              jobTitle: "Freelance Web Developer & SEO Expert",
+              jobTitle: "Freelance Full Stack Developer & Automation Expert",
               url: "https://www.manishkandari.dev",
               image: "https://www.manishkandari.dev/og-image.jpg",
               sameAs: [
@@ -137,14 +151,46 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 "Node.js",
                 "MongoDB",
                 "UI/UX Design",
-                "SEO",
-                "Digital Marketing",
+                "Automation",
+                "n8n",
+                "AI Agents",
+                "Workflow Automation",
               ],
             }),
           }}
         />
 
-        {/* ✅ Image Schema (Rich Result + Copyright) */}
+        {/* ✅ Local Business Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Manish Kandari Web Solutions",
+              image: "https://www.manishkandari.dev/og-image.jpg",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Rishikesh",
+                addressRegion: "Uttarakhand",
+                addressCountry: "India",
+              },
+              areaServed: ["Rishikesh", "Dehradun", "India"],
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: "30.0869",
+                longitude: "78.2676",
+              },
+              url: "https://www.manishkandari.dev",
+              sameAs: [
+                "https://github.com/manishkandari9",
+                "https://www.linkedin.com/in/manish-kandari-924907271/",
+              ],
+            }),
+          }}
+        />
+
+        {/* ✅ Image Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -152,23 +198,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
               "@context": "https://schema.org",
               "@type": "ImageObject",
               contentUrl: "https://www.manishkandari.dev/og-image.jpg",
-              creator: {
-                "@type": "Person",
-                name: "Manish Kandari",
-              },
-              creditText: "Manish Kandari Portfolio",
+              creator: { "@type": "Person", name: "Manish Kandari" },
+              creditText: "Manish Kandari Web Solutions",
               description:
-                "Hire Manish Kandari — Freelance Web Developer and SEO Expert in India specializing in responsive web design, UI/UX development, and SEO-optimized websites.",
+                "Hire Manish Kandari — Freelance Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India. Specialized in AI automation & web app development.",
               caption:
-                "Manish Kandari | Freelance Web Developer & SEO Expert in India",
+                "Manish Kandari | Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India",
               license: "https://creativecommons.org/licenses/by/4.0/",
               copyrightNotice: "© 2025 Manish Kandari. All rights reserved.",
-              acquireLicensePage: "https://www.manishkandari.dev/",
             }),
           }}
         />
 
-        {/* ✅ Sitemap & Robots.txt */}
         <link
           rel="sitemap"
           type="application/xml"
@@ -179,6 +220,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
       <body
         className={`${inter.variable} ${firaCode.variable} font-sans bg-background text-foreground`}
+        aria-label="Manish Kandari Web Solutions"
       >
         <ThemeProvider
           attribute="class"

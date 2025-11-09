@@ -10,7 +10,7 @@ import ParticleBackground from "@/components/particle-background"
 export default function Hero() {
   const [text, setText] = useState("")
   const fullText =
-    "Crafting responsive websites, UI/UX designs, and SEO-driven web solutions."
+    "Designing intelligent web solutions powered by AI and automation."
 
   const [index, setIndex] = useState(0)
 
@@ -33,15 +33,26 @@ export default function Hero() {
       <ParticleBackground />
 
       <div className="relative z-10 flex flex-col items-center justify-center max-w-7xl w-full mx-auto space-y-6">
+        
+        {/* 🌍 Location Tag */}
+        <motion.span
+          className="text-xs sm:text-lg tracking-widest uppercase text-yellow-400 font-medium"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          Based in Rishikesh, Dehradun, India
+        </motion.span>
+
         {/* ✅ Main H1 - SEO optimized + responsive */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-300 leading-tight break-words px-2"
+          className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-300 leading-tight break-words px-2"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Freelance Web Developer &{" "}
-          <span className="text-blue-400">SEO Expert in India</span>
+          Freelance Full Stack Developer <br />
+          & <span className="text-blue-400">Automation Expert</span>
         </motion.h1>
 
         {/* 🔹 Typing Animation (controlled width + mobile safe) */}
@@ -58,28 +69,23 @@ export default function Hero() {
         </motion.div>
 
         {/* ✅ SEO Optimized Paragraph (auto-wraps cleanly) */}
-        <motion.p
-          className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed px-4 sm:px-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          I’m <strong>Manish Kandari</strong> — a{" "}
-          <span className="text-blue-400 font-medium">
-            freelance web developer
-          </span>{" "}
-          and{" "}
-          <span className="text-blue-400 font-medium">
-            SEO expert from India
-          </span>
-          . I build{" "}
-          <strong>
-            responsive websites, UI/UX designs, and web applications
-          </strong>{" "}
-          using <strong>React, Node.js, HTML, CSS, and JavaScript</strong>. I
-          focus on creating fast, scalable, and SEO-optimized digital
-          experiences for businesses.
-        </motion.p>
+      <motion.p
+  className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed px-4 sm:px-2"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.6, duration: 0.8 }}
+>
+  I’m <strong>Manish Kandari</strong> — a{" "}
+  <span className="text-blue-400 font-medium">
+    freelance full stack developer
+  </span>{" "}
+  and{" "}
+  <span className="text-blue-400 font-medium">automation expert</span>{" "}
+  from <strong>Rishikesh, Dehradun</strong>. I create{" "}
+  <strong>AI-powered websites</strong> and{" "}
+  <strong>smart automation tools</strong> that help businesses grow.
+</motion.p>
+
 
         {/* ✅ CTA Buttons (perfectly centered + mobile stacked) */}
         <motion.div
@@ -122,7 +128,7 @@ export default function Hero() {
           repeatType: "reverse",
         }}
       >
-        <Link href="about" scroll={false} aria-label="Scroll to About Section">
+        <Link href="#about" scroll={false} aria-label="Scroll to About Section">
           <ChevronDown className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary animate-bounce" />
         </Link>
       </motion.div>

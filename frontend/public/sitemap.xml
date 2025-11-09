@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://manishkandari.dev/</loc>
+    <loc>https://www.manishkandari.dev/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://manishkandari.dev/about</loc>
+    <loc>https://www.manishkandari.dev/about</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://manishkandari.dev/skills</loc>
+    <loc>https://www.manishkandari.dev/skills</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://manishkandari.dev/services</loc>
+    <loc>https://www.manishkandari.dev/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://manishkandari.dev/projects</loc>
+    <loc>https://www.manishkandari.dev/projects</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://manishkandari.dev/feedback</loc>
+    <loc>https://www.manishkandari.dev/feedback</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://manishkandari.dev/contact</loc>
+    <loc>https://www.manishkandari.dev/contact</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

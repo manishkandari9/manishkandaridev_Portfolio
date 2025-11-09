@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import {
@@ -37,26 +36,26 @@ const skills: Skill[] = [
   { name: "JavaScript", level: 85, category: "frontend" },
   { name: "React", level: 80, category: "frontend" },
   { name: "Next.js", level: 75, category: "frontend" },
-  { name: "TypeScript", level: 1, category: "frontend" },
+  { name: "n8n", level: 70, category: "frontend" },
   { name: "Tailwind CSS", level: 60, category: "frontend" },
 
   { name: "Node.js", level: 75, category: "backend" },
   { name: "Express", level: 70, category: "backend" },
   { name: "MongoDB", level: 65, category: "backend" },
   { name: "SQL", level: 60, category: "backend" },
-  { name: "Firebase", level: 1, category: "backend" },
+  { name: "Golang", level: 75, category: "backend" },
   { name: "REST APIs", level: 80, category: "backend" },
 
   { name: "Git", level: 85, category: "tools" },
   { name: "VS Code", level: 90, category: "tools" },
   { name: "Figma", level: 75, category: "tools" },
-  { name: "Docker", level: 1, category: "tools" },
-  { name: "AWS", level: 1, category: "tools" },
+  { name: "Docker", level: 70, category: "tools" },
+  { name: "AWS", level: 60, category: "tools" },
   { name: "CI/CD", level: 45, category: "tools" },
 
   { name: "Communication", level: 85, category: "soft" },
-  { name: "Problem Solving", level: 60, category: "soft" },
-  { name: "Time Management", level: 80, category: "soft" },
+  { name: "Problem Solving", level: 80, category: "soft" },
+  { name: "Time Management", level: 85, category: "soft" },
   { name: "Teamwork", level: 85, category: "soft" },
   { name: "Adaptability", level: 80, category: "soft" },
   { name: "Client Relations", level: 75, category: "soft" },
@@ -151,8 +150,7 @@ export default function Skills() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">My Skills</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            I've developed a diverse set of skills throughout my journey as a developer. Here's a breakdown of my
-            technical expertise and soft skills.
+            I specialize in full-stack web development, automation, and scalable digital solutions using modern frameworks and tools.
           </p>
         </motion.div>
 
@@ -178,13 +176,31 @@ export default function Skills() {
             <TechIcon icon={<GitBranch className="h-8 w-8" />} name="Git" />
             <TechIcon icon={<Cpu className="h-8 w-8" />} name="Node.js" />
             <TechIcon icon={<Server className="h-8 w-8" />} name="Express" />
-            <TechIcon icon={<Database className="h-8 w-8" />} name="SQL" />
-            <TechIcon icon={<Layers className="h-8 w-8" />} name="Firebase" />
+            <TechIcon icon={<Database className="h-8 w-8" />} name="Golang" />
+            <TechIcon icon={<Layers className="h-8 w-8" />} name="n8n" />
             <TechIcon icon={<Palette className="h-8 w-8" />} name="Figma" />
-            <TechIcon icon={<MessageSquare className="h-8 w-8" />} name="TypeScript" />
+            <TechIcon icon={<MessageSquare className="h-8 w-8" />} name="OpenAI" />
           </div>
         </motion.div>
       </div>
+
+      {/* ✅ SEO JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Manish Kandari",
+            jobTitle: "Freelance Full Stack Developer & Automation Expert",
+            url: "https://www.manishkandari.dev",
+            skills: [
+              "React", "Next.js", "Node.js", "Express", "MongoDB", "Golang",
+              "n8n", "OpenAI", "Tailwind CSS", "Figma", "Automation", "JavaScript"
+            ],
+          }),
+        }}
+      />
     </section>
   )
 }

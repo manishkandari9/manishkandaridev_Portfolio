@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/toaster"
 import Navbar from "@/components/navbar"
 import FeedbackForm from "@/components/feedback-form"
 import FeedbackDisplay from "@/components/feedback-display"
+// import { N8nAutomations } from "@/components/n8n-automations"
 
 export default function Home() {
   return (
@@ -19,7 +20,8 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
-      <Services />  
+      <Services />
+      {/* <N8nAutomations /> */}
       <FeedbackDisplay />
       <FeedbackForm />
       <Contact />
