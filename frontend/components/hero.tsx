@@ -19,7 +19,7 @@ export default function Hero() {
       const timeout = setTimeout(() => {
         setText((prev) => prev + fullText[index])
         setIndex(index + 1)
-      }, 60)
+      }, 45)
       return () => clearTimeout(timeout)
     }
   }, [index])
@@ -30,7 +30,14 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-4 pt-20 md:pt-28"
     >
       {/* 🔹 Background Animation */}
-      <ParticleBackground />
+     <motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1.2 }}
+>
+  <ParticleBackground aria-hidden="true" />
+</motion.div>
+
 
       <div className="relative z-10 flex flex-col items-center justify-center max-w-7xl w-full mx-auto space-y-6">
         
@@ -44,7 +51,7 @@ export default function Hero() {
           Based in Rishikesh, Dehradun, India
         </motion.span>
 
-        {/* ✅ Main H1 - SEO optimized + responsive */}
+        {/*  Main H1 - SEO optimized + responsive */}
         <motion.h1
           className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-300 leading-tight break-words px-2"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -62,10 +69,11 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <h2 className="text-sm sm:text-base md:text-lg lg:text-xl text-primary font-mono tracking-wide break-words leading-snug">
-            {text}
-            <span className="animate-pulse">|</span>
-          </h2>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-primary font-mono tracking-wide break-words leading-snug">
+  {text}
+  <span className="animate-pulse">|</span>
+</p>
+
         </motion.div>
 
         {/* ✅ SEO Optimized Paragraph (auto-wraps cleanly) */}
@@ -77,14 +85,24 @@ export default function Hero() {
 >
   I’m <strong>Manish Kandari</strong> — a{" "}
   <span className="text-blue-400 font-medium">
-    freelance full stack developer
+    freelance full-stack developer
   </span>{" "}
   and{" "}
   <span className="text-blue-400 font-medium">automation expert</span>{" "}
   from <strong>Rishikesh, Dehradun</strong>. I create{" "}
-  <strong>AI-powered websites</strong> and{" "}
-  <strong>smart automation tools</strong> that help businesses grow.
+   <Link
+    href="/projects"
+  >
+    <strong>AI-powered websites</strong>
+  </Link>{" "} and{" "}
+  <strong>smart automation tools</strong> that help <Link href="/contact"><strong>businesses</strong></Link> grow.
 </motion.p>
+
+<span className="sr-only">
+  Freelance full-stack developer and automation expert from Rishikesh, Dehradun.  
+  Building AI-powered websites and smart automation tools.
+</span>
+
 
 
         {/* ✅ CTA Buttons (perfectly centered + mobile stacked) */}
@@ -92,7 +110,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+          transition={{ delay: 0.75, duration: 0.9, ease: "easeOut" }}
         >
           <Link href="#projects">
             <Button
@@ -121,15 +139,11 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 1.5,
-          duration: 0.8,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "reverse",
-        }}
+        transition={{ delay: 1.5, duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+
       >
-        <Link href="#about" scroll={false} aria-label="Scroll to About Section">
-          <ChevronDown className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary animate-bounce" />
+        <Link href="/about" scroll={false} aria-label="Scroll to About Section">
+         <ChevronDown className="h-6 w-6 text-primary animate-bounce drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
         </Link>
       </motion.div>
     </section>

@@ -25,10 +25,10 @@ const firaCode = Fira_Code({
 // ==========================
 export const metadata = {
   title:
-  "Freelance Full Stack Developer & Automation Expert in India | Manish Kandari",
+  "Full Stack Developer & Automation Expert | Manish Kandari",
     // "Freelance Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India | AI Agents & Web Apps - Manish Kandari",
   description:
-   "Hire Manish Kandari — a freelance full stack developer & automation expert from Rishikesh, India. Building modern AI-powered web apps for startups & brands.",
+   "Hire Manish Kandari—Full Stack Developer & Automation Expert from India. I build modern AI-powered web apps and automation systems",
 
   keywords: [
     "freelance full stack developer",
@@ -127,6 +127,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="geo.placename" content="Rishikesh, Dehradun, India" />
         <meta name="geo.position" content="30.0869;78.2676" />
         <meta name="ICBM" content="30.0869, 78.2676" />
+
+         <meta
+          name="ai-topic"
+            content="Full Stack Development, Automation, AI Web Solutions, React Developer in India"
+          />
 
         {/* ✅ Person Schema */}
         <script

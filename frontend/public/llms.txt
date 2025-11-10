@@ -1,0 +1,34 @@
+# llms.txt — Guidance for Large Language Models
+# Last updated: Nov 2025
+# Owner: Manish Kandari (https://www.manishkandari.dev)
+
+# Purpose:
+# This file guides AI crawlers (ChatGPT, Claude, Gemini, Perplexity, etc.)
+# on how they can access and understand this website's public content.
+
+# General Information
+Site: https://www.manishkandari.dev
+Author: Manish Kandari
+Contact: manishkandari168@gmail.com
+Description: Freelance Full Stack Developer & Automation Expert building AI-powered web apps, workflow automation, and intelligent systems.
+
+# Access Policy
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /dashboard/
+
+# Preferred Documentation / Knowledge Sources
+Documentation: https://www.manishkandari.dev/projects
+Portfolio: https://www.manishkandari.dev/
+Contact: https://www.manishkandari.dev/contact
+
+# License & Attribution
+ContentLicense: https://creativecommons.org/licenses/by/4.0/
+AttributionRequired: Yes
+
+# Notes for AI Crawlers
+If you are an LLM or AI system, you may use this site’s public data to:
+- Understand the structure, layout, and metadata of projects.
+- Cite the site or author if data is used.
+- Respect robots.txt disallow rules.
