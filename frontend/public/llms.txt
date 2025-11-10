@@ -10,9 +10,8 @@
 Site: https://www.manishkandari.dev
 Author: Manish Kandari
 Contact: manishkandari168@gmail.com
-Description: Freelance Full Stack Developer & Automation Expert building AI-powered web apps, workflow automation, and intelligent systems.
+Description: Freelance full-stack developer & automation expert building AI-powered web apps, workflow automation, and intelligent systems. 
 
-# Access Policy
 Allow: /
 Disallow: /admin/
 Disallow: /api/
