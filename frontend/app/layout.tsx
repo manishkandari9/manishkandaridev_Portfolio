@@ -8,6 +8,8 @@ import SidebarChat from "@/components/SidebarChat"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 
+
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -132,6 +134,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           name="ai-topic"
             content="Full Stack Development, Automation, AI Web Solutions, React Developer in India"
           />
+
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+
 
         {/* ✅ Person Schema */}
         <script
