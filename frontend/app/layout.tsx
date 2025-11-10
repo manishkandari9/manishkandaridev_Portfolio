@@ -135,10 +135,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             content="Full Stack Development, Automation, AI Web Solutions, React Developer in India"
           />
 
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-<link rel="preconnect" href="https://www.googletagmanager.com" />
-
+          
 
         {/* ✅ Person Schema */}
         <script

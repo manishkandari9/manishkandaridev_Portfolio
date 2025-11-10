@@ -29,13 +29,19 @@ const services = [
   {
     icon: <Palette className="h-10 w-10" />,
     title: "UI/UX Design",
-    description: "Beautiful, user-friendly, and responsive designs that enhance user experience and brand identity.",
+    description:
+      "Beautiful, user-friendly, and responsive designs that enhance user experience and brand identity.",
     tiers: [
       {
         title: "Basic",
         price: "₹4,000 – ₹6,000",
         description: "Perfect for small projects or personal portfolios",
-        features: ["Responsive layouts", "3 custom page designs", "2 revisions", "Source files included"],
+        features: [
+          "Responsive layouts",
+          "3 custom page designs",
+          "2 revisions",
+          "Source files included",
+        ],
         cta: "Get Started",
       },
       {
@@ -68,13 +74,20 @@ const services = [
   {
     icon: <Code className="h-10 w-10" />,
     title: "Web Development",
-    description: "Full-stack web development with modern frameworks like React, Next.js, and Node.js for scalable and secure web apps.",
+    description:
+      "Full-stack web development with modern frameworks like React, Next.js, and Node.js for scalable and secure web apps.",
     tiers: [
       {
         title: "Basic",
         price: "₹12,000 – ₹18,000",
         description: "Simple websites for individuals and small businesses",
-        features: ["5 pages", "Responsive design", "Basic SEO", "Contact form", "Deployment support"],
+        features: [
+          "5 pages",
+          "Responsive design",
+          "Basic SEO",
+          "Contact form",
+          "Deployment support",
+        ],
         cta: "Get Started",
       },
       {
@@ -170,13 +183,19 @@ function ServiceCard({ icon, title, description, tiers, index }: ServiceProps) {
         <motion.div
           initial={{ scale: 0 }}
           animate={isInView ? { scale: 1 } : {}}
-          transition={{ type: "spring", stiffness: 200, delay: index * 0.1 + 0.2 }}
+          transition={{
+            type: "spring",
+            stiffness: 200,
+            delay: index * 0.1 + 0.2,
+          }}
           className="inline-flex p-3 rounded-full bg-primary/10 text-primary mb-4"
         >
           {icon}
         </motion.div>
         <h3 className="text-2xl font-bold mb-2">{title}</h3>
-        <p className="text-muted-foreground max-w-2xl mx-auto">{description}</p>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          {description}
+        </p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
@@ -185,7 +204,10 @@ function ServiceCard({ icon, title, description, tiers, index }: ServiceProps) {
             key={tier.title}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: index * 0.1 + 0.3 + tierIndex * 0.1 }}
+            transition={{
+              duration: 0.5,
+              delay: index * 0.1 + 0.3 + tierIndex * 0.1,
+            }}
             className={`relative ${tier.popular ? "md:-mt-4 md:mb-4" : ""}`}
           >
             {tier.popular && (
@@ -204,6 +226,7 @@ function ServiceCard({ icon, title, description, tiers, index }: ServiceProps) {
                 </div>
                 <CardDescription>{tier.description}</CardDescription>
               </CardHeader>
+
               <CardContent>
                 <ul className="space-y-2">
                   {tier.features.map((feature) => (
@@ -214,15 +237,16 @@ function ServiceCard({ icon, title, description, tiers, index }: ServiceProps) {
                   ))}
                 </ul>
               </CardContent>
+
+              {/* ✅ Fixed hydration-safe link/button */}
               <CardFooter>
-                <Link href="#contact" passHref legacyBehavior>
-                  <Button
-                    className={`w-full ${tier.popular ? "bg-primary" : ""}`}
-                    variant={tier.popular ? "default" : "outline"}
-                  >
-                    {tier.cta}
-                  </Button>
-                </Link>
+                <Button
+                  asChild
+                  className={`w-full ${tier.popular ? "bg-primary" : ""}`}
+                  variant={tier.popular ? "default" : "outline"}
+                >
+                  <Link href="/contact">{tier.cta}</Link>
+                </Button>
               </CardFooter>
             </Card>
           </motion.div>
@@ -267,6 +291,7 @@ export default function Services() {
           ))}
         </div>
 
+        {/* ✅ Fixed bottom motion link */}
         <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}
@@ -275,13 +300,12 @@ export default function Services() {
         >
           <h3 className="text-xl font-bold mb-4">Need a custom solution?</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-             Whether you need a smart automation workflow, a powerful web app, or a professional website—I can build a customized solution that fits your business perfectly.
+            Whether you need a smart automation workflow, a powerful web app, or a professional website—I can build a customized solution that fits your business perfectly.
           </p>
-          <Link href="#contact">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
-              Get in Touch
-            </Button>
-          </Link>
+
+          <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+            <Link href="/contact">Get in Touch</Link>
+          </Button>
         </motion.div>
       </div>
     </section>

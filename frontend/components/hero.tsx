@@ -112,7 +112,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.75, duration: 0.9, ease: "easeOut" }}
         >
-          <Link href="#projects">
+          <Link href="/projects">
             <Button
               size="lg"
               className="w-[160px] sm:w-[180px] bg-primary hover:bg-primary/90 text-primary-foreground text-sm sm:text-base font-semibold transform hover:scale-105 transition-transform"
@@ -121,7 +121,7 @@ export default function Hero() {
               See My Projects
             </Button>
           </Link>
-          <Link href="#contact">
+          <Link href="/contact">
             <Button
               size="lg"
               variant="outline"

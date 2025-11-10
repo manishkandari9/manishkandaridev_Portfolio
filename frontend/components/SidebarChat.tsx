@@ -62,7 +62,6 @@ export default function AIChatbotWidget() {
         { headers: { "Content-Type": "application/json" } }
       )
 
-      // Handle backend array response safely
       const aiContent =
         Array.isArray(response.data.response) && response.data.response[0]?.output
           ? response.data.response[0].output
@@ -128,14 +127,23 @@ export default function AIChatbotWidget() {
                   size="sm"
                   onClick={toggleSpeaking}
                   className="w-8 h-8 p-0 hover:neon-accent-glow transition-all duration-300"
+                  aria-label={isSpeaking ? "Mute AI voice" : "Unmute AI voice"}
+                  title={isSpeaking ? "Mute AI voice" : "Unmute AI voice"}
                 >
-                  {isSpeaking ? <Volume2 className="w-4 h-4 text-accent" /> : <VolumeX className="w-4 h-4 text-muted-foreground" />}
+                  {isSpeaking ? (
+                    <Volume2 className="w-4 h-4 text-accent" />
+                  ) : (
+                    <VolumeX className="w-4 h-4 text-muted-foreground" />
+                  )}
                 </Button>
+
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsOpen(false)}
                   className="w-8 h-8 p-0 hover:neon-glow transition-all duration-300"
+                  aria-label="Close chat window"
+                  title="Close chat window"
                 >
                   <X className="w-4 h-4 text-muted-foreground hover:text-primary" />
                 </Button>
@@ -201,10 +209,22 @@ export default function AIChatbotWidget() {
                     className="pr-20 focus:ring-2 focus:ring-primary transition-all duration-300"
                   />
                   <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                    <Button variant="ghost" size="sm" className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300"
+                      aria-label="Insert emoji"
+                      title="Insert emoji"
+                    >
                       <Smile className="w-4 h-4 text-muted-foreground" />
                     </Button>
-                    <Button variant="ghost" size="sm" className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-8 h-8 p-0 hover:bg-accent transition-all duration-300"
+                      aria-label="Attach file"
+                      title="Attach file"
+                    >
                       <Paperclip className="w-4 h-4 text-muted-foreground" />
                     </Button>
                   </div>
@@ -215,6 +235,8 @@ export default function AIChatbotWidget() {
                   variant={isRecording ? "default" : "outline"}
                   size="sm"
                   className={`w-10 h-10 p-0 rounded-full transition-all duration-300 ${isRecording ? "bg-red-500 text-white animate-pulse" : "hover:bg-accent"}`}
+                  aria-label={isRecording ? "Stop recording" : "Start recording"}
+                  title={isRecording ? "Stop recording" : "Start recording"}
                 >
                   <Mic className="w-4 h-4" />
                 </Button>
@@ -224,6 +246,8 @@ export default function AIChatbotWidget() {
                   disabled={!inputValue.trim()}
                   size="sm"
                   className="w-10 h-10 p-0 rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 disabled:opacity-50"
+                  aria-label="Send message"
+                  title="Send message"
                 >
                   <Send className="w-4 h-4" />
                 </Button>
@@ -236,6 +260,8 @@ export default function AIChatbotWidget() {
           <Button
             onClick={() => setIsOpen(true)}
             className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
+            aria-label="Open chat"
+            title="Open chat"
           >
             <div className="relative">
               <MessageCircle className="w-6 h-6 text-white animate-bounce group-hover:animate-pulse transition-transform duration-300" />
@@ -260,4 +286,3 @@ export default function AIChatbotWidget() {
     </>
   )
 }
-            

@@ -54,7 +54,7 @@ export default function Navbar() {
     label: "GitHub - Manish Kandari",
   },
   {
-    href: "https://www.linkedin.com/in/manish-kandari-924907271/",
+    href: "https://www.linkedin.com/in/manishsinghkandari09/",
     icon: <Linkedin className="h-5 w-5" />,
     label: "LinkedIn - Manish Kandari",
   },

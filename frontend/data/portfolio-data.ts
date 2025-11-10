@@ -368,10 +368,10 @@ export const portfolioData: PortfolioData = {
     subtitle:
       "Have a project in mind or want to discuss a potential collaboration? I'd love to hear from you. Fill out the form below or reach out directly.",
     info: {
-      email: "manish@example.com",
-      phone: "+1 (234) 567-890",
-      location: "New Delhi, India",
-      whatsapp: "https://wa.me/1234567890",
+      email: "manishkandari168@Gmail.com",
+      phone: "7830130183",
+      location: "Rishikesh, Dehradun India",
+      whatsapp: "https://wa.me/7830130183",
       socials: {
         github: "https://github.com",
         linkedin: "https://linkedin.com",
