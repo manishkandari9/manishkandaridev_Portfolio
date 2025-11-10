@@ -158,7 +158,7 @@ export default function About() {
             {/* CTA - “Let’s Collaborate” */}
             <div className="pt-8 flex justify-start md:justify-start">
          <motion.a
-  href="contact"
+  href="/contact"
   className="relative inline-flex items-center justify-center px-8 py-3 text-lg font-semibold 
   text-white rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 
   hover:from-blue-600 hover:via-purple-600 hover:to-indigo-600 

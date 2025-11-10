@@ -28,7 +28,7 @@ export const metadata = {
   "Full Stack Developer & Automation Expert | Manish Kandari",
     // "Freelance Full Stack Developer & Automation Expert in Rishikesh, Dehradun, India | AI Agents & Web Apps - Manish Kandari",
   description:
-   "Hire Manish Kandari—Full Stack Developer & Automation Expert from India. I build modern AI-powered web apps and automation systems",
+   "Hire Manish Kandari—a full-stack developer & automation expert from India. I create AI-powered web apps, workflow automation tools, and smart digital solutions.",
 
   keywords: [
     "freelance full stack developer",
