@@ -175,7 +175,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold">Location</h4>
                   <p className="text-muted-foreground">
-                    Rishikesh, Uttarakhand, India
+                    Rishikesh Dehradun, Uttarakhand, India
                   </p>
                 </div>
               </li>
